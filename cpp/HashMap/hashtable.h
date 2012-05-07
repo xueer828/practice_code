@@ -1,17 +1,23 @@
 #pragma once
 
+/*
+* hash table implement for hash_map and hash_set
+*/
+
 #include <vector>
 using namespace std;
 
 
+//pair define
 template<class T,class V>
 struct _pair
 {
 	T first;
 	V second;
+	_pair(const T& f, const V& s):first(f),second(s){};
 };
 
-//node for hashtable
+//actual content of hashtable's node
 template<class T>
 struct hash_table_node
 {
@@ -19,7 +25,7 @@ struct hash_table_node
 	T value;
 };
 
-//预先声明
+//为hash table iterator预先声明
 template<class key, class value, class hashfcn, class getkey, class equalkey, class alloc>
 struct hash_table;
 
@@ -31,7 +37,7 @@ struct hash_table_iterator
 	typedef value& reference;
 	typedef value	value_type;
 
-	typedef hash_table_iterator<key,value,hashfcn,getkey,equalkey,alloc> _iterator;
+	typedef hash_table_iterator<key,value,hashfcn,getkey,equalkey,alloc> iterator;
 	typedef hash_table<key,value,hashfcn,getkey,equalkey,alloc> hash_table;
 	typedef hash_table_node<value> node;
 
@@ -43,7 +49,7 @@ struct hash_table_iterator
 	hash_table_iterator(hash_table* tab,node* n):ht(ht),cur(n){};
 	hash_table_iterator(){};
 
-	reference operator*(){ return cur->value;	}
+	reference operator*(){return cur->value;}
 	pointer operator->(){return &(operator*());}
 
 	//hash表只能往后++
@@ -55,22 +61,24 @@ struct hash_table_iterator
 
 };
 
+//迭代器向前，如果当前节点不是本bucket最后一个，则取其next，否则取下一个非空的bucket
 template<class key, class value, class hashfcn, class getkey, class equalkey, class alloc>
-typename hash_table_iterator<key,value,hashfcn,getkey,equalkey,alloc> 
+typename hash_table_iterator<key,value,hashfcn,getkey,equalkey,alloc>  //这里返回值必须全写，不能替换
 hash_table_iterator<key,value,hashfcn,getkey,equalkey,alloc>::operator++()
 {
 	const node* old=cur;
 	cur = cur->next;
-	if(!cur)
+	if(!cur) //如果cur为空
 	{
-		size_type bucket_n=ht->bucket_num(old->value);
-		while(!cur && ++bucket_n < buckets.SIZE())
+		size_type bucket_n=ht->bucket_num(old->value); //获取当前迭代器所指向的bucket id
+		while(!cur && ++bucket_n < buckets.SIZE()) //从这里开始搜寻下一个非空bucket
 			cur = buckets[bucket_n];
 	}
 
-	return *this;
+	return *this; //返回搜寻到的结果，也可能cur为空
 }
 
+/* hash table defination */
 template<class key, class value, class hashfcn, class getkey, class equalkey, class alloc>
 struct hash_table
 {
@@ -87,13 +95,13 @@ struct hash_table
 
 private:
 	//函数对象
-	hasher hash;
-	getkey get_key;
-	equalkey equals;
+	hasher hash; //hash函数
+	getkey get_key; //从存储的获取key的函数对象
+	equalkey equals; //在同一个bucket里，进行比较的函数对象
 
 	typedef hash_table_node<value> node;
 
-	vector<node*> buckets;	//桶，用来存储节点起始节点
+	vector<node*> buckets;	//桶，用来存储节点起始节点的向量
 	size_type num_elements;	//节点计数
 
 	size_type bucket_num_key(const key& k)
@@ -150,11 +158,12 @@ public:
 	//迭代器，end
 	iterator end()
 	{
-		return iterator(this,0);
+		return iterator(this,0); //迭代器cur指向空，表示end
 	}
 	//迭代器，起始
 	iterator begin()
 	{
+		//从头开始寻找
 		for(size_type n=0;n<buckets.size();++n)
 		{
 			if(buckets[n]) //如果不空，则返回
