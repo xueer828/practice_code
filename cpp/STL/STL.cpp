@@ -1,7 +1,7 @@
 // STL.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+//#include "stdafx.h"
 #include "vector"
 #include "list"
 #include "iostream"
@@ -122,7 +122,7 @@ void foofunc<int*>(int*){cout<<"d.Invoke <int*>\n";}
 */
 
 
-int main(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {
 	//cout<<foo_func<int>()<<foo_func<bool>()<<foo_func<double>()<<foo_func<int>()<<foo_func<int>()<<foo_func<int>()<<endl;
 
@@ -145,7 +145,10 @@ int main(int argc, _TCHAR* argv[])
 	*/
 
 	int p=0;
-	foofunc(&p);
+	//foofunc(&p);
+
+	printf("%.3f\n",1/3.0);
+	printf("%.3lf\n",1/3.0);
 
 
 	return 0;

@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HashMap", "HashMap\HashMap.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ThreeColorFlags", "ThreeColorFlags\ThreeColorFlags.vcproj", "{B3FAD5FF-8B24-47C2-A72A-8837A9447EC0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ACM_Entrance_WhiteBook_ch2", "ACM_Entrance_WhiteBook_ch2\ACM_Entrance_WhiteBook_ch2.vcproj", "{23AF5777-424C-44DB-9D7E-D56E37CBC22E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -43,6 +45,10 @@ Global
 		{B3FAD5FF-8B24-47C2-A72A-8837A9447EC0}.Debug|Win32.Build.0 = Debug|Win32
 		{B3FAD5FF-8B24-47C2-A72A-8837A9447EC0}.Release|Win32.ActiveCfg = Release|Win32
 		{B3FAD5FF-8B24-47C2-A72A-8837A9447EC0}.Release|Win32.Build.0 = Release|Win32
+		{23AF5777-424C-44DB-9D7E-D56E37CBC22E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{23AF5777-424C-44DB-9D7E-D56E37CBC22E}.Debug|Win32.Build.0 = Debug|Win32
+		{23AF5777-424C-44DB-9D7E-D56E37CBC22E}.Release|Win32.ActiveCfg = Release|Win32
+		{23AF5777-424C-44DB-9D7E-D56E37CBC22E}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
