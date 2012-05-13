@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ThreeColorFlags", "ThreeCol
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ACM_Entrance_WhiteBook_ch2", "ACM_Entrance_WhiteBook_ch2\ACM_Entrance_WhiteBook_ch2.vcproj", "{23AF5777-424C-44DB-9D7E-D56E37CBC22E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ACM_Entrance_WhiteBook_ch3", "ACM_Entrance_WhiteBook_ch3\ACM_Entrance_WhiteBook_ch3.vcproj", "{F5EC4CF0-3D3A-44AD-A353-2F120623FFDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -49,6 +51,10 @@ Global
 		{23AF5777-424C-44DB-9D7E-D56E37CBC22E}.Debug|Win32.Build.0 = Debug|Win32
 		{23AF5777-424C-44DB-9D7E-D56E37CBC22E}.Release|Win32.ActiveCfg = Release|Win32
 		{23AF5777-424C-44DB-9D7E-D56E37CBC22E}.Release|Win32.Build.0 = Release|Win32
+		{F5EC4CF0-3D3A-44AD-A353-2F120623FFDC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F5EC4CF0-3D3A-44AD-A353-2F120623FFDC}.Debug|Win32.Build.0 = Debug|Win32
+		{F5EC4CF0-3D3A-44AD-A353-2F120623FFDC}.Release|Win32.ActiveCfg = Release|Win32
+		{F5EC4CF0-3D3A-44AD-A353-2F120623FFDC}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
