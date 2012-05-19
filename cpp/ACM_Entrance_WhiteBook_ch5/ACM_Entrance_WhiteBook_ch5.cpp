@@ -1,7 +1,7 @@
 // ACM_Entrance_WhiteBook_ch5.cpp : Defines the entry point for the console application.
 //
 
-#include "stdafx.h"
+//#include "stdafx.h"
 
 /************************************************************************/
 /* ch 5 基础题目选解
@@ -290,7 +290,7 @@ BigN operator*(const BigN& a1, const BigN& a2)
 }
 
 
-int _tmain(int argc, _TCHAR* argv[])
+int _tmain(int argc, char* argv[])
 {
 
 	//eg_5_2_2_get_fanci(999);

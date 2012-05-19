@@ -174,10 +174,6 @@
 				RelativePath=".\ACM_Entrance_WhiteBook_ch5.cpp"
 				>
 			</File>
-			<File
-				RelativePath=".\stdafx.cpp"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
