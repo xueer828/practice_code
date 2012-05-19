@@ -130,6 +130,14 @@ struct BigN
 	friend ostream& operator<<(ostream& out, const BigN& b);
 	friend istream& operator>>(istream& in, BigN& b);
 
+	//逻辑运算
+	friend bool operator<(const BigN& a1, const BigN& a2);
+	friend bool operator>(const BigN& a1, const BigN& a2) {return a2<a1;}
+	friend bool operator<=(const BigN& a1, const BigN& a2) {return !(a2<a1);}
+	friend bool operator>=(const BigN& a1, const BigN& a2) {return !(a1<a2);}
+	friend bool operator==(const BigN& a1, const BigN& a2) {return !(a1<a2) && !(a2<a1);}
+	friend bool operator!=(const BigN& a1, const BigN& a2) {return !(a1==a2);}
+
 	int length(){return len;}
 
 private:
@@ -137,6 +145,60 @@ private:
 	int len, s[maxn];
 	bool neg;
 };
+
+bool operator<(const BigN& a1, const BigN& a2)
+{
+	if(a1.neg && !a2.neg && a1.len !=1 && a2.len != 1 && a1.s[0]!=0 && a2.s[0]!=0) //符号不同，且长度不为0，表面不为+0 或者 -0
+	{
+		return true; 
+	}
+
+	if(a1.neg && a2.neg)
+	{
+		bool ret=false;
+		if(a1.len == a2.len)
+		{
+			for(int i=a1.len-1;i>=0;--i)
+			{
+				if (a1.s[i] > a2.s[i])
+				{
+					ret = true;
+					break;
+				}else if(a1.s[i] < a2.s[i])
+				{
+					ret = false;
+					break;
+				}
+			}
+		}else{
+			ret = (a1.len > a2.len);
+		}
+
+		return ret;
+	}else if(!a1.neg && !a2.neg){
+		bool ret=false;
+		if(a1.len == a2.len)
+		{
+			for(int i=a1.len-1;i>=0;--i)
+			{
+				if (a1.s[i] < a2.s[i])
+				{
+					ret = true;
+					break;
+				}else if(a1.s[i] > a2.s[i])
+				{
+					ret = false;
+					break;
+				}
+			}
+		}else{
+			ret = (a1.len < a2.len);
+		}
+
+		return ret;
+	}
+	return false;
+}
 
 ostream& operator<<(ostream& out, const BigN& b)
 {
@@ -289,11 +351,27 @@ BigN operator*(const BigN& a1, const BigN& a2)
 	return b;
 }
 
+//eg.5.3.1 6174问题，互不相同的4位数，所有数字从大到小排列得到a，从小到大排列得到b
+//然后a-b得到新的4位数，然后继续操作
+//4321-1234=3087,8730-0378=8352,8532-2358=6174,7614-1467=6174，最后一个6174出现过，则结束
+//输入一个n位数，输出序列，直到出现循环
+void eg_5_3_1_6174_problem()
+{
+	int n;
+	cin>>n;
+
+
+}
+
+
 
 int _tmain(int argc, _TCHAR* argv[])
 {
 
 	//eg_5_2_2_get_fanci(999);
+
+	//eg_ Big Number test
+	/*
 	BigN a("1123456789876543211");
 	BigN b("-2222222222222222");
 
@@ -315,6 +393,17 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 
 	cout<<sum<<":"<<sum.length()<<endl;
+
+	BigN e1,e2;
+	while(1){
+	cin>>e1>>e2;
+	cout<<e1<<"-"<<e2<<"="<<e1-e2<<endl;
+	cout<<e1<< ((e1>e2)?">":"<=")<<e2<<endl;
+	cout<<e1<< (e1==e2?"==":"!=")<<e2<<endl;
+	}
+	*/
+
+
 	return 0;
 }
 
