@@ -2,11 +2,11 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="ACM_Entrance_WhiteBook_ch5"
-	ProjectGUID="{9216DCD4-F17E-447A-8488-34EE45985B64}"
-	RootNamespace="ACM_Entrance_WhiteBook_ch5"
+	Name="ACM_Entrance_WhiteBook_ch6"
+	ProjectGUID="{E863AD56-4FB5-4292-937E-A55547D58C34}"
+	RootNamespace="ACM_Entrance_WhiteBook_ch6"
 	Keyword="Win32Proj"
-	TargetFrameworkVersion="196613"
+	TargetFrameworkVersion="196608"
 	>
 	<Platforms>
 		<Platform
@@ -171,7 +171,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\ACM_Entrance_WhiteBook_ch5.cpp"
+				RelativePath=".\ACM_Entrance_WhiteBook_ch6.cpp"
 				>
 			</File>
 		</Filter>

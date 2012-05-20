@@ -19,6 +19,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ACM_Entrance_WhiteBook_ch3"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ACM_Entrance_WhiteBook_ch5", "ACM_Entrance_WhiteBook_ch5\ACM_Entrance_WhiteBook_ch5.vcproj", "{9216DCD4-F17E-447A-8488-34EE45985B64}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ACM_Entrance_WhiteBook_ch6", "ACM_Entrance_WhiteBook_ch6\ACM_Entrance_WhiteBook_ch6.vcproj", "{E863AD56-4FB5-4292-937E-A55547D58C34}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -61,6 +63,10 @@ Global
 		{9216DCD4-F17E-447A-8488-34EE45985B64}.Debug|Win32.Build.0 = Debug|Win32
 		{9216DCD4-F17E-447A-8488-34EE45985B64}.Release|Win32.ActiveCfg = Release|Win32
 		{9216DCD4-F17E-447A-8488-34EE45985B64}.Release|Win32.Build.0 = Release|Win32
+		{E863AD56-4FB5-4292-937E-A55547D58C34}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E863AD56-4FB5-4292-937E-A55547D58C34}.Debug|Win32.Build.0 = Debug|Win32
+		{E863AD56-4FB5-4292-937E-A55547D58C34}.Release|Win32.ActiveCfg = Release|Win32
+		{E863AD56-4FB5-4292-937E-A55547D58C34}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
