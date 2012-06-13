@@ -8,6 +8,71 @@
 
 using namespace std;
 
+template <typename T>
+class SetAVL
+{
+template <typename T> class Node;
+public:
+	int getHeight()
+	{
+		return getHeight(root);
+	}
+
+	int getHeight(const Node<T> *subtree)
+	{
+		// If we are at a leaf
+		if (subtree == NULL)
+			return 0;
+
+		return 1 + max(getHeight(subtree->left), getHeight(subtree->right));
+	}
+
+	void add(Node<T> *item)
+	{
+		Node<T> *t = new Node<T>(item);
+		insert(root, t);
+	}
+
+	void insert(Node<T> *root, Node<T> *t)
+	{
+		if (root == NULL)
+			root = t;
+		else
+		{
+			if (t->item < root->item)
+				insert(root->left, t);
+			else if (t->item != root->item)
+				insert(root->right, t);
+			else
+				delete t;
+		}
+	}
+
+protected:
+	template <typename T>
+	class Node
+	{
+	public:
+		T item;
+		Node *left;
+		Node *right;
+		int height;
+
+		Node(T item)
+		{
+			this->item = item;
+			this->left = NULL;
+			this->right = NULL;
+			this->height = 0;
+		}
+	};
+
+	Node<T> *root;
+	int treeSize;
+
+};
+
+
 struct test{
 	test(int){};
 	test(){};
@@ -153,4 +218,6 @@ int main(int argc, char* argv[])
 
 	return 0;
 }
+
+
 
