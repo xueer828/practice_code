@@ -117,7 +117,7 @@ void ch1_rotate_string()
 {
 	char test_str[]="abcdefghijk";
 
-	int m,k;
+	int k;
 	cout<<"Input Number of Left Rotate Chars:";
 	cin>>k;
 
@@ -138,6 +138,101 @@ void ch1_rotate_string()
 /* 第二章、字符串是否包含问题
 /************************************************************************/
 
+//方法1，快排+类似归并的比较
+
+//首先是快排
+
+// T 必须重载支持 operator <
+template<class T>
+inline const T* _get_mid(const T* t1, const T* t2, const T* t3)
+{
+	if(*t1<*t2)
+	{
+		if(*t2<*t3)
+			return t2; // t1<t2<t3
+		else if(*t1<*t3)
+			return t3; // t1<t3<t2
+		else
+			return t1; // t3<t1<t2
+	}else if(*t1<*t3) // t2<t1<t3
+		return t1;
+	else if(*t2<*t3) //t2<t3<t1
+		return t3;
+	else
+		return t2; // t3<t2<t1
+}
+
+template<class T>
+void _qsort_v1(T t[], int begin, int end)
+{
+	assert(t);
+	if(begin >= end) return;
+	int lo=begin,hi=end,mid;
+	//取最开始，最结尾和中间元素的中值,这样可以保证lo,hi不会越界
+	T *p_pivot=const_cast<T*>(_get_mid(t+lo,t+((lo+hi)>>1),t+hi));
+
+	//交换，将主元放到整个end位置上(如果不在end位置上)
+	if(p_pivot!=t+end)
+		_swap(*p_pivot,*(t+end));
+	T pivot=t[end];
+	//cout<<"MID:"<<t[lo]<<"|"<<t[((lo+hi)>>1)]<<"|"<<t[hi]<<":"<<pivot<<endl;
+	--hi;
+	while(true)
+	{
+		while(t[lo]<pivot) ++lo; //找到>=pivot的元素就停下来
+		while(pivot<t[hi]) --hi; //找到<=pivot的元素就停下来
+
+		if(lo >= hi) { mid=lo; break; } //已经完成本次划分
+		_swap(t[lo],t[hi]); //交换
+
+		++lo,--hi;
+	}
+	//交换当前mid元素和主元
+	_swap(t[mid],t[end]);
+
+	cout<<begin<<"|"<<mid<<"|"<<end<<"|"<<t<<"|"<<pivot<<endl;
+
+	if(begin<mid-1)
+		_qsort_v1(t,begin,mid-1);
+	if(mid+1<end)
+		_qsort_v1(t,mid+1,end);	
+}
+
+//优化版本2
+template<class T>
+void _qsort_v2(T t[],int begin, int end)
+{
+	assert(t);
+	if(begin >= end) return;
+
+	int lo=begin,hi=begin,mid=((begin+end)>>1);
+	//取开始，结尾和中间三值的中值，以便于平衡
+	T *p_pivot=const_cast<T*>(_get_mid(t+begin,t+mid,t+end));
+
+	_swap(*p_pivot,*(t+lo)); //将主元放置在最开始
+
+	while(hi<=end)
+	{
+		while(t[hi]>t[begin]) ++hi;
+		//交换lo和hi的值，lo往后移动，hi也往后移动
+		if(lo != hi)
+			_swap(t[lo],t[hi]);
+		++lo, ++hi;
+	}
+	//此时，将begin的值与lo位置的值进行交换
+	if(lo != begin)
+		_swap(t[lo],t[begin]);
+
+	cout<<begin<<"|"<<lo<<"|"<<end<<"|"<<t<<"|"<<t[lo]<<endl;
+	
+	if(begin < lo -1)
+		_qsort_v2(t,begin,lo-1);
+	if(lo+1 < end)
+		_qsort_v2(t,lo+1,end);
+}
+
+
+
 typedef void (*run_problem)();
 
 run_problem solutions[]=
@@ -148,6 +243,18 @@ run_problem solutions[]=
 
 int main(int argc, char * argv[])
 {
+
+	char str[]="opqrstuvwxyzjihgfedcba";
+	cout<<str<<endl;
+	_qsort_v1(str,0,sizeof(str)-2);
+	cout<<str<<endl;
+
+	char str2[]="opqrstuvwxyzjihgfedcba";
+	cout<<str2<<endl;
+	_qsort_v2(str2,0,sizeof(str2)-2);
+	cout<<str2<<endl;
+
+	return 0;
 	int n;
 	int len=sizeof(solutions)/sizeof(run_problem);
 	cout<<"Solution Number:";
