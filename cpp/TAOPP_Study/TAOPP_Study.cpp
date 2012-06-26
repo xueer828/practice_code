@@ -190,7 +190,7 @@ void _qsort_v1(T t[], int begin, int end)
 	//交换当前mid元素和主元
 	_swap(t[mid],t[end]);
 
-	cout<<begin<<"|"<<mid<<"|"<<end<<"|"<<t<<"|"<<pivot<<endl;
+	//cout<<begin<<"|"<<mid<<"|"<<end<<"|"<<t<<"|"<<pivot<<endl;
 
 	if(begin<mid-1)
 		_qsort_v1(t,begin,mid-1);
@@ -209,16 +209,20 @@ void _qsort_v2(T t[],int begin, int end)
 	//取开始，结尾和中间三值的中值，以便于平衡
 	T *p_pivot=const_cast<T*>(_get_mid(t+begin,t+mid,t+end));
 
-	_swap(*p_pivot,*(t+lo)); //将主元放置在最开始
+	if(p_pivot != t+begin)
+		_swap(*p_pivot,*(t+begin)); //将主元放置在最开始
 
-	while(hi<=end)
+	for(hi=begin+1;;)
 	{
-		while(t[hi]>t[begin]) ++hi;
+		while(hi<=end && t[hi] > t[begin]) ++hi;
+		if(hi>end) break;
 		//交换lo和hi的值，lo往后移动，hi也往后移动
-		if(lo != hi)
-			_swap(t[lo],t[hi]);
-		++lo, ++hi;
+		_swap(t[++lo],t[hi]);
+		++hi; //在hi被替换后，hi必须往后移动
 	}
+
+	//system("pause");
+	
 	//此时，将begin的值与lo位置的值进行交换
 	if(lo != begin)
 		_swap(t[lo],t[begin]);
@@ -231,30 +235,270 @@ void _qsort_v2(T t[],int begin, int end)
 		_qsort_v2(t,lo+1,end);
 }
 
+//优化版本3，其实跟版本2类似,最好的方法
+template<class T>
+void _qsort_v3(T t[],int begin, int end)
+{
+	assert(t);
+	if(begin >= end) return;
 
+	T *p_pivot=const_cast<T*>(_get_mid(t+begin,t+(begin+end)/2,t+end));
+	//将pivot放在数组最后
+	if(p_pivot != t+end)
+		_swap(t[end],*p_pivot);
+	int lo=begin,hi;
+	for(hi=begin;hi<end;++hi)
+	{
+		if (t[hi]<t[end]) //t[end]是pivot
+			_swap(t[hi],t[lo++]);
+	}
+
+	//将pivot与lo的位置进行交换
+	_swap(t[lo],t[end]);
+
+	if(begin < lo-1)
+		_qsort_v3(t,begin,lo-1);
+	if(lo+1 < end)
+		_qsort_v3(t,lo+1,end);
+}
+
+bool _str_included_v1(string str1,string str2)
+{
+	//先对俩字符进行排序O(nlgn)
+	char *s1=const_cast<char*>(str1.c_str());
+	char* s2=const_cast<char*>(str2.c_str());
+
+	_qsort_v3(s1,0,strlen(s1)-1);
+	_qsort_v3(s2,0,strlen(s2)-1);
+
+	int istr1=0,istr2=0;
+
+	for(istr2=0;s2[istr2]!='\0';)
+	{
+		if(s1[istr1]>s2[istr2])
+			return false;
+		else if(s1[istr1]==s2[istr2] && str1[istr1]!='\0')
+			++istr2, ++ istr1;
+		else
+			++istr1;
+	}
+
+	return true;	
+}
+
+//方法2，当然最简单的，O(n+m)的hashtable算法
+
+bool _str_included_v2(const string& str1, const string& str2)
+{
+	bool exists[256]={0};
+	bool ret=true;
+	memset(exists,0,sizeof(exists)*sizeof(bool));
+	for(const char *ch=&str1[0];*ch != '\0';++ch)
+	{
+		exists[*ch]=true;
+	}
+
+	for(const char *ch=&str2[0];*ch != '\0'; ++ch)
+	{
+		if (!exists[*ch])
+		{
+			ret=false;
+			return ret;
+		}
+	}
+	return ret;
+}
+
+void ch2_str_included()
+{
+	string longstr,shortstr;
+
+	cout<<"Input long string and short string:";
+	cin>>longstr>>shortstr;
+
+	/*
+	cout<<"long_str:"<<longstr<<",short_str:"<<shortstr;
+	cout<<",Result:"<<(_str_included_v1(longstr,shortstr)?"Included":"Not Included")<<endl;
+	*/
+
+	cout<<"long_str:"<<longstr<<",short_str:"<<shortstr;
+	cout<<",Result:"<<(_str_included_v2(longstr,shortstr)?"Included":"Not Included")<<endl;
+
+}
+
+/************************************************************************/
+/* 第三章，寻找最小的第K个数，或者最小的K个数
+/* 方案1，构造K大顶堆，算法复杂度O(klgk)+O((n-k)lgk)=O(nlgk)
+/* 方案2，类似快排的patition和selection，算法复杂度最好接近O(n),例如,
+/* 随机主元选取法，或者中值的中间值选择法
+/************************************************************************/
+
+//方案1，构造大顶堆
+
+//第0位置为顶，其左右子节点为2*i+1 和 2*(i+1)
+//i节点的父节点为(i-1)/2
+//idx为要调整的节点下标
+//由上自下开始调整堆元素，使其满足条件
+template<class T>
+void heap_adjust(T arr[], int size, int idx)
+{
+	assert(arr);
+	T tmp=arr[idx]; //临时保存
+	int left=2*idx +1, right= 2*idx +2;
+	int next;
+	T *pChg=0;
+	while(left < size) //直到左子节点存在
+	{
+		pChg = &arr[left];
+		next = left;
+		if((left+1) < size && arr[left+1] > arr[left]) //如果右子节点也存在,且大于左子结点
+		{
+			pChg = &arr[left+1];
+			next = left+1;
+		}
+
+		if(tmp >= *pChg) //满足大顶堆定义
+			break;
+		
+		//不满足大顶堆条件，则往下筛
+		arr[idx] = *pChg;
+		idx = next;
+		left = 2*idx + 1;
+	}
+	//退出之后，最后节点pChg 为tmp
+	arr[idx] = tmp;
+
+	for (int i=0;i<size;++i)
+		cout<<arr[i]<<" ";
+	cout<<endl;
+}
+
+//从size/2开始，也就是从第一个父节点开始往上调用堆调整函数
+template<class T>
+void heap_init(T arr[], int size)
+{
+	//从最后一个父节点往前直到顶
+	for(int root=(size-1-1)/2;root>=0;--root)
+		heap_adjust(arr,size,root);
+}
+
+template<class T>
+void heap_sort(T arr[], int size)
+{
+	heap_init(arr,size);
+	while(size>0)
+	{
+		_swap(arr[0],arr[size-1]);
+		--size;
+		heap_adjust(arr,size,0);
+	}
+}
+
+//方案2，类似快排的partition算法,第k大，也就是从小到大排
+template<class Type>
+Type kth_elem_partition(Type arr[], int size, int k)
+{
+	assert(arr);	
+
+	int begin=0,end=size-1;
+
+	while(begin < end)
+	{
+#if 0
+		for(int i=0;i<size;++i)
+			cout<<arr[i]<<" ";
+		cout<<endl;
+#endif
+		int mid1=begin,mid2=begin;
+		int pivot=arr[end]; //选最后一个值为pivot
+		for(;mid1<end;)
+		{
+			if(arr[mid1]<=pivot) //如果小于pivot，则begin++,end++
+			{
+				_swap(arr[mid1++],arr[mid2++]);
+				continue;
+			}
+			++mid1;
+		}
+		
+		_swap(arr[mid2],arr[end]);
+
+		if(mid2 == k) return pivot;
+		else if(mid2 < k)
+		{
+			begin=mid2 + 1;
+		}else{
+			end = mid2 - 1;
+		}
+	}
+}
+
+
+//求第k大的数，那么就是构造k的小顶堆
+//咱们反过来，求第k小的数，构造k的大顶堆
+void ch3_kth_elem()
+{
+	int t[]={3,-2,5,7,8,2,4,6,4,0,2,12,-21,3,9,10,-1,7,-6};
+	//int t[]={-21,3, 4, 3, 2, 2, 4, -2, -1, 0, -6};
+	int cache[20]={0};
+	int k=-1;
+	cout<<"输入k:"<<endl;
+	cin>>k;
+
+	heap_sort(t,sizeof(t)/sizeof(int));
+
+	for (int i=0;i<sizeof(t)/sizeof(int);++i)
+		cout<<t[i]<<" ";
+	cout<<endl;
+
+	cout<<"方案2: partition:";
+	int t2[]={3,-2,5,7,8,2,4,6,4,0,2,12,-21,3,9,10,-1,7,-6};
+	cout<<kth_elem_partition(t2,sizeof(t2)/sizeof(int),k)<<endl;
+	for(int i=0;i<=k;i++)
+		cout<<t2[i]<<" ";
+	cout<<endl;
+}
+
+
+/************************************************************************/
+/* 第4章 现场编写类似strstr/strcpy/strpbrk的函数
+/************************************************************************/
 
 typedef void (*run_problem)();
 
 run_problem solutions[]=
 {
 	ch1_rotate_string,
+	ch2_str_included,
+	ch3_kth_elem,
 };
 
 
 int main(int argc, char * argv[])
 {
 
+#if 0
 	char str[]="opqrstuvwxyzjihgfedcba";
 	cout<<str<<endl;
 	_qsort_v1(str,0,sizeof(str)-2);
 	cout<<str<<endl;
+
 
 	char str2[]="opqrstuvwxyzjihgfedcba";
 	cout<<str2<<endl;
 	_qsort_v2(str2,0,sizeof(str2)-2);
 	cout<<str2<<endl;
 
-	return 0;
+
+	
+	char str3[]="opqrstuvwxyzjihgfedcba";
+	cout<<str3<<endl;
+	_qsort_v3(str3,0,sizeof(str3)-2);
+	cout<<str3<<endl;
+	
+
+#endif
+
 	int n;
 	int len=sizeof(solutions)/sizeof(run_problem);
 	cout<<"Solution Number:";
