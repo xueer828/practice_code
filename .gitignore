@@ -33,3 +33,9 @@ stdafx.h
 stdafx.cpp
 ReadMe.txt
 targetver.h
+*.css
+*.orig
+*.filters
+_UpgradeReport_Files*
+UpgradeLog.XML
+*.dll
