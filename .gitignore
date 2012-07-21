@@ -39,3 +39,8 @@ targetver.h
 _UpgradeReport_Files*
 UpgradeLog.XML
 *.dll
+*.opensdf
+*.sdf
+*.suo
+ipch
+*.vcxproj.user
