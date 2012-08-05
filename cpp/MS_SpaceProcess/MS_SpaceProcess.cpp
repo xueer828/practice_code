@@ -48,6 +48,11 @@ void SpaceProcess(char* pstr)
 
 int _tmain(int argc, _TCHAR* argv[])
 {
+	char a1=-106;
+	char b1= -128;
+	cout<<(int)((char)0xff)<<endl;
+	
+	return 0;
 	//testing
 	// Test cases for leading & trailing spaces.
 	char arr00[] = "hello_world";
