@@ -29,6 +29,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TAOPP_Study", "TAOPP_Study\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InterviewBible", "InterviewBible\InterviewBible.vcxproj", "{5711491E-2C37-43FE-99C3-9710AF01956D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BeautyOfProgramming", "BeautyOfProgramming", "{5143E565-6D28-4F9A-B77D-A1C214B3698B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BOP_Chapter1_Games", "BOP_Chapter1_Games\BOP_Chapter1_Games.vcxproj", "{C2F90B0D-CB9C-4D63-A78A-D26964848634}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -91,8 +95,15 @@ Global
 		{5711491E-2C37-43FE-99C3-9710AF01956D}.Debug|Win32.Build.0 = Debug|Win32
 		{5711491E-2C37-43FE-99C3-9710AF01956D}.Release|Win32.ActiveCfg = Release|Win32
 		{5711491E-2C37-43FE-99C3-9710AF01956D}.Release|Win32.Build.0 = Release|Win32
+		{C2F90B0D-CB9C-4D63-A78A-D26964848634}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C2F90B0D-CB9C-4D63-A78A-D26964848634}.Debug|Win32.Build.0 = Debug|Win32
+		{C2F90B0D-CB9C-4D63-A78A-D26964848634}.Release|Win32.ActiveCfg = Release|Win32
+		{C2F90B0D-CB9C-4D63-A78A-D26964848634}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C2F90B0D-CB9C-4D63-A78A-D26964848634} = {5143E565-6D28-4F9A-B77D-A1C214B3698B}
 	EndGlobalSection
 EndGlobal
