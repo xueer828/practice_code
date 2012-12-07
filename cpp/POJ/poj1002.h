@@ -44,26 +44,32 @@ void solve()
 	}
 
 	bool fExist=false;
-	for(int i=0;i<10000000;++i)
+	for(int j=0;j<10000000;++j)
 	{
+		int i=j;
 		if(bundle[i]>1)
 		{
-			if(i<10)
-				printf("000-000%d",i);
-			else if(i<100)
-				printf("000-00%d",i);
-			else if(i<1000)
-				printf("000-0%d",i);
-			else if(i<10000)
-				printf("000-%d",i);
-			else if(i<100000)
-				printf("00%d-%d",i/10000,i%10000);
-			else if(i<1000000)
-				printf("0%d-%d",i/10000,i%10000);
+			if(i < 10000)
+				printf("000-");
+			else if(i < 100000)
+				printf("00%d-",i/10000);
+			else if(i < 1000000)
+				printf("0%d-",i/10000);
 			else
-				printf("%d-%d",i/10000,i%10000);
+				printf("%d-",i/10000);
 
-			printf(" %d\n",bundle[i]);
+			i %= 10000;
+
+			if(i<10)
+				printf("000%d",i);
+			else if(i<100)
+				printf("00%d",i);
+			else if(i<1000)
+				printf("0%d",i);
+			else
+				printf("%d",i);
+
+			printf(" %d\n",bundle[j]);
 			fExist = true;
 		}
 	}
