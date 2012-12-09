@@ -83,6 +83,10 @@
     <ClInclude Include="poj1002.h" />
     <ClInclude Include="poj1006.h" />
     <ClInclude Include="poj1008.h" />
+    <ClInclude Include="poj1018.h" />
+    <ClInclude Include="poj1061.h" />
+    <ClInclude Include="poj1067_n.h" />
+    <ClInclude Include="poj1088.h" />
     <ClInclude Include="poj2823.h" />
     <ClInclude Include="poj3250.h" />
   </ItemGroup>

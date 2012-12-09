@@ -1,6 +1,9 @@
 
 
 //here include different .h file to invoke problems
+#include "poj1061.h"
+#include "poj1088.h"
+#include "poj1018.h"
 #include "poj1008.h"
 #include "poj1006.h"
 #include "poj1002.h"
