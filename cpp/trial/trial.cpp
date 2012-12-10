@@ -28,6 +28,8 @@ bool classname::cannotMoveIn(NeighborPoint mp)
 	return !mp.inGridNotOccupied;
 }
 
+
 void main()
 {
+
 }

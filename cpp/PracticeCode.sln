@@ -1,31 +1,43 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BinaryTree", "BinTree_LCA\BinTree_LCA.vcproj", "{06010ACD-B99C-4008-8387-4CABA36CEADB}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BinaryTree", "BinTree_LCA\BinTree_LCA.vcxproj", "{06010ACD-B99C-4008-8387-4CABA36CEADB}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MS_SpaceProcess", "MS_SpaceProcess\MS_SpaceProcess.vcproj", "{7C1A0A54-0E76-4424-B90A-A57828EF2613}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MS_SpaceProcess", "MS_SpaceProcess\MS_SpaceProcess.vcxproj", "{7C1A0A54-0E76-4424-B90A-A57828EF2613}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shot", "Shot\Shot.vcproj", "{65852DF5-04A3-4C81-85DD-BE6F09B50080}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shot", "Shot\Shot.vcxproj", "{65852DF5-04A3-4C81-85DD-BE6F09B50080}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "STL", "STL\STL.vcproj", "{6EC09BB8-B5A5-40EF-91F6-3F8B35A372DA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "STL", "STL\STL.vcxproj", "{6EC09BB8-B5A5-40EF-91F6-3F8B35A372DA}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HashMap", "HashMap\HashMap.vcproj", "{4170A05C-1EF0-4179-90D7-6B30081E457B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HashMap", "HashMap\HashMap.vcxproj", "{4170A05C-1EF0-4179-90D7-6B30081E457B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ThreeColorFlags", "ThreeColorFlags\ThreeColorFlags.vcproj", "{B3FAD5FF-8B24-47C2-A72A-8837A9447EC0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ThreeColorFlags", "ThreeColorFlags\ThreeColorFlags.vcxproj", "{B3FAD5FF-8B24-47C2-A72A-8837A9447EC0}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ACM_Entrance_WhiteBook_ch2", "ACM_Entrance_WhiteBook_ch2\ACM_Entrance_WhiteBook_ch2.vcproj", "{23AF5777-424C-44DB-9D7E-D56E37CBC22E}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ACM_Entrance_WhiteBook_ch2", "ACM_Entrance_WhiteBook_ch2\ACM_Entrance_WhiteBook_ch2.vcxproj", "{23AF5777-424C-44DB-9D7E-D56E37CBC22E}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ACM_Entrance_WhiteBook_ch3", "ACM_Entrance_WhiteBook_ch3\ACM_Entrance_WhiteBook_ch3.vcproj", "{F5EC4CF0-3D3A-44AD-A353-2F120623FFDC}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ACM_Entrance_WhiteBook_ch3", "ACM_Entrance_WhiteBook_ch3\ACM_Entrance_WhiteBook_ch3.vcxproj", "{F5EC4CF0-3D3A-44AD-A353-2F120623FFDC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ACM_Entrance_WhiteBook_ch5", "ACM_Entrance_WhiteBook_ch5\ACM_Entrance_WhiteBook_ch5.vcproj", "{9216DCD4-F17E-447A-8488-34EE45985B64}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ACM_Entrance_WhiteBook_ch5", "ACM_Entrance_WhiteBook_ch5\ACM_Entrance_WhiteBook_ch5.vcxproj", "{9216DCD4-F17E-447A-8488-34EE45985B64}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ACM_Entrance_WhiteBook_ch6", "ACM_Entrance_WhiteBook_ch6\ACM_Entrance_WhiteBook_ch6.vcproj", "{E863AD56-4FB5-4292-937E-A55547D58C34}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ACM_Entrance_WhiteBook_ch6", "ACM_Entrance_WhiteBook_ch6\ACM_Entrance_WhiteBook_ch6.vcxproj", "{E863AD56-4FB5-4292-937E-A55547D58C34}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2012_3_15_algri_on_kindle", "2012_3_15_algri_on_kindle\2012_3_15_algri_on_kindle.vcproj", "{5328BF0F-461E-4D49-A3A1-B86AC77740CF}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2012_3_15_algri_on_kindle", "2012_3_15_algri_on_kindle\2012_3_15_algri_on_kindle.vcxproj", "{5328BF0F-461E-4D49-A3A1-B86AC77740CF}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "trial", "trial\trial.vcproj", "{06B14658-9D90-4EB8-9183-8EB61445CDF1}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "trial", "trial\trial.vcxproj", "{06B14658-9D90-4EB8-9183-8EB61445CDF1}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TAOPP_Study", "TAOPP_Study\TAOPP_Study.vcproj", "{4AA6479A-87C2-41B0-842F-B35484211404}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TAOPP_Study", "TAOPP_Study\TAOPP_Study.vcxproj", "{4AA6479A-87C2-41B0-842F-B35484211404}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InterviewBible", "InterviewBible\InterviewBible.vcxproj", "{5711491E-2C37-43FE-99C3-9710AF01956D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BeautyOfProgramming", "BeautyOfProgramming", "{5143E565-6D28-4F9A-B77D-A1C214B3698B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BOP_Chapter1_Games", "BOP_Chapter1_Games\BOP_Chapter1_Games.vcxproj", "{C2F90B0D-CB9C-4D63-A78A-D26964848634}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ACM", "ACM", "{CAFEDB5C-51EF-4599-8B67-22198D038EA8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "POJ", "POJ\POJ.vcxproj", "{9A06F6E8-E0FA-4CE1-A25F-20F778CCEEBB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HDU", "HDU\HDU.vcxproj", "{E88D1B24-6BDF-47C1-8CE4-B899A0D449FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,8 +97,29 @@ Global
 		{4AA6479A-87C2-41B0-842F-B35484211404}.Debug|Win32.Build.0 = Debug|Win32
 		{4AA6479A-87C2-41B0-842F-B35484211404}.Release|Win32.ActiveCfg = Release|Win32
 		{4AA6479A-87C2-41B0-842F-B35484211404}.Release|Win32.Build.0 = Release|Win32
+		{5711491E-2C37-43FE-99C3-9710AF01956D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5711491E-2C37-43FE-99C3-9710AF01956D}.Debug|Win32.Build.0 = Debug|Win32
+		{5711491E-2C37-43FE-99C3-9710AF01956D}.Release|Win32.ActiveCfg = Release|Win32
+		{5711491E-2C37-43FE-99C3-9710AF01956D}.Release|Win32.Build.0 = Release|Win32
+		{C2F90B0D-CB9C-4D63-A78A-D26964848634}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C2F90B0D-CB9C-4D63-A78A-D26964848634}.Debug|Win32.Build.0 = Debug|Win32
+		{C2F90B0D-CB9C-4D63-A78A-D26964848634}.Release|Win32.ActiveCfg = Release|Win32
+		{C2F90B0D-CB9C-4D63-A78A-D26964848634}.Release|Win32.Build.0 = Release|Win32
+		{9A06F6E8-E0FA-4CE1-A25F-20F778CCEEBB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9A06F6E8-E0FA-4CE1-A25F-20F778CCEEBB}.Debug|Win32.Build.0 = Debug|Win32
+		{9A06F6E8-E0FA-4CE1-A25F-20F778CCEEBB}.Release|Win32.ActiveCfg = Release|Win32
+		{9A06F6E8-E0FA-4CE1-A25F-20F778CCEEBB}.Release|Win32.Build.0 = Release|Win32
+		{E88D1B24-6BDF-47C1-8CE4-B899A0D449FE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E88D1B24-6BDF-47C1-8CE4-B899A0D449FE}.Debug|Win32.Build.0 = Debug|Win32
+		{E88D1B24-6BDF-47C1-8CE4-B899A0D449FE}.Release|Win32.ActiveCfg = Release|Win32
+		{E88D1B24-6BDF-47C1-8CE4-B899A0D449FE}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C2F90B0D-CB9C-4D63-A78A-D26964848634} = {5143E565-6D28-4F9A-B77D-A1C214B3698B}
+		{9A06F6E8-E0FA-4CE1-A25F-20F778CCEEBB} = {CAFEDB5C-51EF-4599-8B67-22198D038EA8}
+		{E88D1B24-6BDF-47C1-8CE4-B899A0D449FE} = {CAFEDB5C-51EF-4599-8B67-22198D038EA8}
 	EndGlobalSection
 EndGlobal
