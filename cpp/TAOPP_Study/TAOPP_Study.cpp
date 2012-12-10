@@ -464,6 +464,115 @@ void ch3_kth_elem()
 /* 第4章 现场编写类似strstr/strcpy/strpbrk的函数
 /************************************************************************/
 
+//字符串查找,最普通的两层循环方式,时间复杂度O(m*n)
+//Brute-Force算法，简称BF算法
+int search_str(const char* src, const char* dest)
+{
+	if(!src || !dest)
+		return -1; //指针为空
+
+	if(dest == src)
+		return 0;
+
+	const char* psrc=src;
+	const char* pdest=dest;
+	while(*psrc!='\0')
+	{
+		const char* p_tmp_src=psrc;
+		const char* p_tmp_dest=pdest;
+		while(*p_tmp_dest!='\0' && *p_tmp_src == *p_tmp_dest)
+			++p_tmp_dest,++p_tmp_src;
+
+		if(*p_tmp_dest == '\0')
+			return psrc-src;
+		else
+			++psrc;
+	}
+	return -1; //不存在
+}
+
+//KMP算法，重点是求模式串的next数组值
+/************************************************************************/
+/* 引入了next[]数组，next[j]的值表示P[0...j-1]中最长后缀的长度等于相同字符序列的前缀
+对于next[]数组的定义如下：
+1)next[j]=-1  j=0
+2)next[j]=max k:0<k<j P[0...k-1]=P[j-k,j-1]
+3)next[j]=0  其他
+
+因此KMP算法的思想就是：在匹配过程称，若发生不匹配的情况，如果next[j]>=0，则目标串的指针i不变
+，将模式串的指针j移动到next[j]的位置继续进行匹配；若next[j]=-1，则将i右移1位，并将j置0，
+继续进行比较。
+
+算法：
+求算next[]数组的值有两种思路，第一种思路是用递推的思想去求算，还有一种就是直接去求解(就是求的最长的后缀和前缀相等值)。
+令next[0]=-1, 假设next[j]=k,也就是P[0..k-1]==P[j-k,j-1]
+1> 如果P[j]==P[k], 那么就会有P[0..k]==P[j-k+1,j],那么next[j+1]=next[j]+1=k+1
+2> 如果P[j]!=P[k], 那么可以把他看做模式匹配的问题，也就是说匹配失败的时候，k值如何移动，显然k=next[k]
+然后递归判断P[next[k]]?=P[j]
+/************************************************************************/
+void get_next(const char* pat, int next[])
+{
+	assert(pat);
+
+	//令next[0]=-1
+	next[0]=-1;
+	int j=0,k=-1;
+	next[0]=-1;
+
+	//next[j]=k的定义为: t[0]...t[k-1]=t[j-k+1]...t[j-1]
+
+	while(pat[j]!='\0') //j是大于k的值得，j不会回溯，k值会回溯
+	{
+		if(k==-1 || pat[j]==pat[k]) //如果k==-1，则表示第一个字符需要匹配
+		{
+			++j,++k;
+			next[j]=k;			
+		}
+		else
+			k=next[k]; //如果不等，则模式回退
+	}
+}
+
+int KMP(const char* longstr,const char* shortstr)
+{
+	if(!longstr || !shortstr)
+		return -1;
+
+	int *next=new int[strlen(shortstr)];
+
+	get_next(shortstr,next);
+
+	const char* plong=longstr;
+	const char* pshort=shortstr;
+	while(*plong != '\0')
+	{
+		if(*pshort == '\0')
+			return pshort-shortstr;
+		if(*plong == *pshort)
+			++plong,++pshort;
+		else
+		{
+			if(next[pshort-shortstr]==-1)
+				++plong,++pshort;
+			else
+				pshort = shortstr + next[pshort-shortstr];
+		}
+	}
+	
+	delete []next;
+	return -1;
+}
+
+void ch4_basic_functions()
+{
+	string longstr,shortstr;
+	cout<<"Input Long and Short String:\n";
+	cin>>longstr>>shortstr;
+
+	cout<<"<BF>"<<longstr<<":"<<shortstr<<"~="<<search_str(longstr.c_str(),shortstr.c_str())<<endl;
+	cout<<"<KMP>"<<longstr<<":"<<shortstr<<"~="<<KMP(longstr.c_str(),shortstr.c_str())<<endl;
+}
+
 typedef void (*run_problem)();
 
 run_problem solutions[]=
@@ -471,7 +580,10 @@ run_problem solutions[]=
 	ch1_rotate_string,
 	ch2_str_included,
 	ch3_kth_elem,
+	ch4_basic_functions,
 };
+
+
 
 
 int main(int argc, char * argv[])
