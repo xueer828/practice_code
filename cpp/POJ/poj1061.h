@@ -43,6 +43,7 @@ More, Í¬Óà·½³Ì ax=b(mod c) ¿ÉÒÔ×ª»»Îª ax - cy = b, (yÎªÕûÊı±¶) ÔÚ b|gcd(a,-c)µÄÇ
 #include <iostream>
 #include <fstream>
 #include <cassert>
+#include <string>
 using namespace std;
 
 //À©Õ¹Å·¼¸ÀïµÂ·½³ÌÇó½â a*x+b*y=gcd(a,b)
