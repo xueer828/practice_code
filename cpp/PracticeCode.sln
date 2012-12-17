@@ -39,6 +39,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "POJ", "POJ\POJ.vcxproj", "{
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HDU", "HDU\HDU.vcxproj", "{E88D1B24-6BDF-47C1-8CE4-B899A0D449FE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "leetcode.com", "leetcode.com\leetcode.com.vcxproj", "{83D58941-5793-4A90-B873-E623D6D3BEAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -113,6 +115,10 @@ Global
 		{E88D1B24-6BDF-47C1-8CE4-B899A0D449FE}.Debug|Win32.Build.0 = Debug|Win32
 		{E88D1B24-6BDF-47C1-8CE4-B899A0D449FE}.Release|Win32.ActiveCfg = Release|Win32
 		{E88D1B24-6BDF-47C1-8CE4-B899A0D449FE}.Release|Win32.Build.0 = Release|Win32
+		{83D58941-5793-4A90-B873-E623D6D3BEAE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{83D58941-5793-4A90-B873-E623D6D3BEAE}.Debug|Win32.Build.0 = Debug|Win32
+		{83D58941-5793-4A90-B873-E623D6D3BEAE}.Release|Win32.ActiveCfg = Release|Win32
+		{83D58941-5793-4A90-B873-E623D6D3BEAE}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
