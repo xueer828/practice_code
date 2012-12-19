@@ -78,6 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="3_sum.h" />
+    <ClInclude Include="3_sum_closest.h" />
+    <ClInclude Include="4_sum.h" />
+    <ClInclude Include="add_binary.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
