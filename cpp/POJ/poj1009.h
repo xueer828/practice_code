@@ -2,7 +2,7 @@
 #define _TEST_
 
 // poj1009
-// Copyright (c) 2012/12/13 
+// Copyright (c) 2012/12/13
 // Author: xdutaotao (xdutaotao@gmail.com)
 // Edge Detection ±ß¼ì²â
 
@@ -10,6 +10,7 @@
 #include <iostream>
 #include <fstream>
 #include <cassert>
+#include <cstring>
 using namespace std;
 
 #define CPos(x,y,w,h) (((x)<0 || (y)<0 || (x)>=(w) || (y)>=(h))? -1 : (y)*(w)+(x))
@@ -25,14 +26,14 @@ unsigned int arr_n[MAXN]={0};
 
 inline int search_idx(unsigned int arr[],int beg, int end, const int& pos)
 {
-	if(end==0 || beg==end-1)
-		return end;
-
 	int mid=(beg+end)>>1;
+	if(mid==0 || (pos <=arr[mid] && pos > arr[mid-1]))
+        return mid<0?0:mid;
+
 	if(arr[mid]<pos)
-		beg = mid;
+		beg = mid+1;
 	else
-		end = mid;
+        end=mid;
 
 	return search_idx(arr,beg,end,pos);
 }
@@ -51,7 +52,7 @@ inline int M2A(const int& x, const int& y, const int&w, const int&h, const int&c
 {
 	if(x <0 || y< 0 || x>= w || y >= h)
 		return -1;
-	
+
 	int pos=y*w+x;
 
 	//¶þ·ÖËÑË÷
@@ -66,7 +67,7 @@ inline unsigned char get_val(const int& p, const int& cp, bool forward)
 
 	int pos_idx=cp,pos;
 	int ans_idx;
-	
+
 	if(forward)
 	{
 		do{
@@ -79,7 +80,7 @@ inline unsigned char get_val(const int& p, const int& cp, bool forward)
 	}
 
 	return arr_v[ans_idx];
-	
+
 
 }
 
@@ -89,7 +90,7 @@ void solve1()
 	while(1)
 	{
 		cin>>width;
-		
+
 		if(!width) //exit
 			break;
 
@@ -101,13 +102,13 @@ void solve1()
 			scanf("%d %d",&arr_v[i],&n);
 			if(n==0)
 				break; //grid over
-			
+
 			arr_n[i]=(i>0?arr_n[i-1]+n:n-1);
 			height = (arr_n[i]+1)/width;
 		}
 
 		cout<<width<<" *** "<<height<<endl;
-		
+
 		int idx=0,cur_id=0,prev_diff=-1,cumulated=0;
 		while(arr_n[cur_id]>0)
 		{
@@ -118,9 +119,9 @@ void solve1()
 				unsigned char maxd= 0;
 
 				//int pos=CPos(x-1,y-1,width,height);
-				
-				
-				
+
+
+
 
 				if(prev_diff == maxd)
 				{

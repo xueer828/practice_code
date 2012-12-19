@@ -1,0 +1,64 @@
+# depslib dependency file v1.0
+1355448461 source:d:\7_studyother\code\practice_code\cpp\poj\main.cpp
+	"poj1009.h"
+	"poj1061.h"
+	"poj1088.h"
+	"poj1018.h"
+	"poj1008.h"
+	"poj1006.h"
+	"poj1002.h"
+	"poj3250.h"
+	"poj2823.h"
+	<cstdlib>
+
+1355586730 d:\7_studyother\code\practice_code\cpp\poj\poj1009.h
+	<cstdio>
+	<iostream>
+	<fstream>
+	<cassert>
+	<cstring>
+
+1355448459 d:\7_studyother\code\practice_code\cpp\poj\poj1061.h
+	<cstdio>
+	<iostream>
+	<fstream>
+	<cassert>
+	<string>
+
+1355123386 d:\7_studyother\code\practice_code\cpp\poj\poj1088.h
+	<cstdio>
+	<iostream>
+	<fstream>
+	<cassert>
+
+1355123386 d:\7_studyother\code\practice_code\cpp\poj\poj1018.h
+	<cstdio>
+	<iostream>
+	<fstream>
+	<cassert>
+	<vector>
+	<cstdlib>
+
+1355123386 d:\7_studyother\code\practice_code\cpp\poj\poj1008.h
+	<cstdio>
+	<iostream>
+	<fstream>
+	<cassert>
+	<cstring>
+
+1355123386 d:\7_studyother\code\practice_code\cpp\poj\poj1006.h
+	<cstdio>
+	<iostream>
+	<fstream>
+	<cassert>
+
+1355123386 d:\7_studyother\code\practice_code\cpp\poj\poj1002.h
+	<cstdio>
+
+1355123386 d:\7_studyother\code\practice_code\cpp\poj\poj3250.h
+	"stdio.h"
+	"stdlib.h"
+
+1355123386 d:\7_studyother\code\practice_code\cpp\poj\poj2823.h
+	<iostream>
+
