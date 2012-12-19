@@ -20,6 +20,9 @@ Thumbs.db
 *.cache
 *.ilk
 *.log
+*.cbp
+*.depend
+*.layout
 [Bb]in
 [Dd]ebug*/
 *.lib
