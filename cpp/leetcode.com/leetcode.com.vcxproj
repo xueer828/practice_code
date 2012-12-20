@@ -82,6 +82,8 @@
     <ClInclude Include="4_sum.h" />
     <ClInclude Include="add_binary.h" />
     <ClInclude Include="add_two_numbers.h" />
+    <ClInclude Include="anagrams.h" />
+    <ClInclude Include="balanced_binary_tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

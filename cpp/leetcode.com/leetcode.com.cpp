@@ -1,6 +1,8 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
+#include "balanced_binary_tree.h"
+#include "anagrams.h"
 #include "add_two_numbers.h"
 #include "add_binary.h"
 #include "4_sum.h"
