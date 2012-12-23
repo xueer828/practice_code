@@ -84,6 +84,16 @@
     <ClInclude Include="add_two_numbers.h" />
     <ClInclude Include="anagrams.h" />
     <ClInclude Include="balanced_binary_tree.h" />
+    <ClInclude Include="best_time_to_buy_and_sell_stock.h" />
+    <ClInclude Include="best_time_to_buy_and_sell_stock2.h" />
+    <ClInclude Include="best_time_to_buy_and_sell_stock3.h" />
+    <ClInclude Include="binary_tree_inorder_traversal.h" />
+    <ClInclude Include="binary_tree_level_order_traversal.h" />
+    <ClInclude Include="binary_tree_level_order_traversal2.h" />
+    <ClInclude Include="binary_tree_maximum_path_sum.h" />
+    <ClInclude Include="binary_tree_ZigZag_level_order_traversal.h" />
+    <ClInclude Include="climbing_stairs.h" />
+    <ClInclude Include="combination_sum.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
