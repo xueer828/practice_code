@@ -2,6 +2,11 @@
 //
 
 
+#include "container_with_most_water.h"
+#include "construct_binary_tree_from_preorder_and_inorder_traversal.h"
+#include "construct_binary_tree_from_inorder_and_postorder_traversal.h"
+#include "combinations.h"
+#include "combination_sum2.h"
 #include "combination_sum.h"
 #include "climbing_stairs.h"
 #include "binary_tree_ZigZag_level_order_traversal.h"
