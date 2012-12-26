@@ -7,9 +7,8 @@
 // 
 
 /*
-Given an array where elements are sorted in ascending order, convert it to a height balanced BST.
+Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
 */
-
 
 
 #include <cstdio>
@@ -26,6 +25,29 @@ Given an array where elements are sorted in ascending order, convert it to a hei
 #include <cstdlib>
 using namespace std;
 
+struct ListNode
+{
+	int val;
+	ListNode* next;
+	ListNode(int x):val(x),next(NULL){}
+};
+
+struct TreeNode
+{
+	int val;
+	TreeNode* left;
+	TreeNode* right;
+	TreeNode(int x):val(x),left(NULL),right(NULL){}
+};
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
 /**
  * Definition for binary tree
  * struct TreeNode {
@@ -36,11 +58,44 @@ using namespace std;
  * };
  */
 class Solution {
+	//we must get the mid node of one link
+	TreeNode* get_mid_node(ListNode* head, ListNode* tail)
+	{
+		ListNode* fast_node(head),slow_node(head);
+
+		while(fast_node!=tail && fast_node->next!=tail)
+		{
+			fast_node = fast_node->next -> next;
+			slow_node = slow_node->next;
+		}
+
+		return slow_node;
+	}
+
+	TreeNode* sortedListToBST_recusive(ListNode* head, ListNode* tail)
+	{
+		if(!head || head == tail)
+			return NULL;
+
+		ListNode* mid=get_mid_node(head,tail);
+
+		TreeNode* root=new TreeNode(mid->val);
+		root->left=sortedListToBST_recusive(haed,mid);
+		mid = mid->next;
+		root->right=sortedListToBST_recusive(mid,tail);
+
+		return root;
+	}
+
 public:
-    TreeNode *sortedArrayToBST(vector<int> &num) {
+    TreeNode *sortedListToBST(ListNode *head) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
         
+        if(!head)
+        	return NULL;
+
+        return sortedListToBST_recusive(head,NULL);
     }
 };
 
