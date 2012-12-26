@@ -10,6 +10,12 @@
 Given a singly linked list where elements are sorted in ascending order, convert it to a height balanced BST.
 */
 
+/*
+一次通过
+Run Status: Accepted!
+Program Runtime: 148 milli secs
+Progress: 32/32 test cases passed.
+*/
 
 #include <cstdio>
 #include <iostream>
@@ -59,9 +65,10 @@ struct TreeNode
  */
 class Solution {
 	//we must get the mid node of one link
-	TreeNode* get_mid_node(ListNode* head, ListNode* tail)
+	ListNode* get_mid_node(ListNode* head, ListNode* tail)
 	{
-		ListNode* fast_node(head),slow_node(head);
+		ListNode* fast_node(head);
+		ListNode* slow_node(head);
 
 		while(fast_node!=tail && fast_node->next!=tail)
 		{
@@ -80,7 +87,7 @@ class Solution {
 		ListNode* mid=get_mid_node(head,tail);
 
 		TreeNode* root=new TreeNode(mid->val);
-		root->left=sortedListToBST_recusive(haed,mid);
+		root->left=sortedListToBST_recusive(head,mid);
 		mid = mid->next;
 		root->right=sortedListToBST_recusive(mid,tail);
 
