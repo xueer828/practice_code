@@ -100,6 +100,10 @@
     <ClInclude Include="construct_binary_tree_from_preorder_and_inorder_traversal.h" />
     <ClInclude Include="container_with_most_water.h" />
     <ClInclude Include="convert_sorted_list_to_binary_search_tree.h" />
+    <ClInclude Include="count_and_say.h" />
+    <ClInclude Include="decode_ways.h" />
+    <ClInclude Include="distinct_subsequences.h" />
+    <ClInclude Include="divide_two_integers.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

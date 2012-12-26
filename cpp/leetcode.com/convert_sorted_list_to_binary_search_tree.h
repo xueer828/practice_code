@@ -67,8 +67,10 @@ class Solution {
 	//we must get the mid node of one link
 	ListNode* get_mid_node(ListNode* head, ListNode* tail)
 	{
-		ListNode* fast_node(head);
-		ListNode* slow_node(head);
+		//ListNode* fast_node(head),slow_node(head); //注意这里错误,后面slow_node不是指针了,而是对象
+		ListNode* fast_node(head), *slow_node(head); //这样可以,也就是说指针需要跟在变量前
+		//ListNode* fast_node(head);  //或者像这样,分开定义
+		//ListNode* slow_node(head); 
 
 		while(fast_node!=tail && fast_node->next!=tail)
 		{

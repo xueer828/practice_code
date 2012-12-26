@@ -1,7 +1,10 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
-
+#include "decode_ways.h"
+#include "count_and_say.h"
+#include "convert_sorted_list_to_binary_search_tree.h"
+#include "convert_sorted_array_to_binary_search_tree.h"
 #include "container_with_most_water.h"
 #include "construct_binary_tree_from_preorder_and_inorder_traversal.h"
 #include "construct_binary_tree_from_inorder_and_postorder_traversal.h"
