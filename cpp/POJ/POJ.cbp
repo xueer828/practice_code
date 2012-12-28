@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="POJ" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug Win32">
+				<Option output="POJ" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-D_DEBUG" />
+					<Add option="-D_CONSOLE" />
+				</Compiler>
+			</Target>
+			<Target title="Release Win32">
+				<Option output="POJ" prefix_auto="1" extension_auto="1" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DWIN32" />
+					<Add option="-DNDEBUG" />
+					<Add option="-D_CONSOLE" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Unit filename="ReadMe.txt" />
+		<Unit filename="main.cpp" />
+		<Unit filename="poj1002.h" />
+		<Unit filename="poj1006.h" />
+		<Unit filename="poj1008.h" />
+		<Unit filename="poj1009.h" />
+		<Unit filename="poj1009_n.h" />
+		<Unit filename="poj1018.h" />
+		<Unit filename="poj1061.h" />
+		<Unit filename="poj1067_n.h" />
+		<Unit filename="poj1088.h" />
+		<Unit filename="poj2823.h" />
+		<Unit filename="poj3250.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

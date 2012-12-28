@@ -20,11 +20,10 @@ Thumbs.db
 *.cache
 *.ilk
 *.log
-*.cbp
 *.depend
-*.layout
 [Bb]in
 [Dd]ebug*/
+[.objs]/
 *.lib
 *.sbr
 obj/
