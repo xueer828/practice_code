@@ -19,8 +19,12 @@ S = "rabbbit", T = "rabbit"
 Return 3.
 */
 
-//æ€è·¯:æ±‚Tæ˜¯Sçš„å¤šå°‘ç§ä¸åŒçš„çš„å­ä¸²,æ¢ä¸ªæ€è·¯,å®é™…æ˜¯æ±‚æœ‰å¤šå°‘ç§ä¸åŒçš„æ–¹å¼(åˆ æˆ–è€…ä¸åˆ )å¯ä»¥é€šè¿‡Tå¾—åˆ°S
-//é€’å½’,å¯¹æºå­—ç¬¦ä¸²çš„æ¯ä¸ªå­—ç¬¦è¿›è¡Œæšä¸¾,é€‰æ‹©å’Œä¸é€‰æ‹©
+//Ë¼Â·:ÇóTÊÇSµÄ¶àÉÙÖÖ²»Í¬µÄµÄ×Ó´®,»»¸öË¼Â·,Êµ¼ÊÊÇÇóÓĞ¶àÉÙÖÖ²»Í¬µÄ·½Ê½(É¾»òÕß²»É¾)¿ÉÒÔÍ¨¹ıTµÃµ½S
+//µİ¹é,¶ÔÔ´×Ö·û´®µÄÃ¿¸ö×Ö·û½øĞĞÃ¶¾Ù,Ñ¡ÔñºÍ²»Ñ¡Ôñ
+
+/*
+Solution 1: Ğ¡Êı¾İÄÜ¹ı,´óÊı¾İ¹ı²»ÁË
+*/
 
 #include <cstdio>
 #include <iostream>
@@ -44,7 +48,7 @@ struct Contexts
 	Contexts(int v,string& s): visible(v),str(s) {}
 };
 
-class Solution {
+class Solution1 {
 	vector<Contexts> stk;
 
 public:
@@ -103,6 +107,36 @@ public:
 
 		return cnt;
 	}
+};
+
+class Solution {
+public:
+    int numDistinct(string S, string T) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+
+        int slen=S.length();
+        int tlen=T.length();
+        if(slen < tlen)
+            return 0;
+        if(slen == tlen)
+			return 1;
+
+        int cnt=0;
+        vector<vector<int> > DP(slen+1,vector<int>(tlen+1));
+
+        //³õÊ¼»¯
+        for(int i=0;i<=slen;++i)
+            for(int j=0;j<tlen,++j)
+                DP[i][j]=0;
+
+
+
+
+
+
+        return cnt;
+    }
 };
 
 void solve()
