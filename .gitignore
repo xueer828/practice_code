@@ -46,3 +46,6 @@ UpgradeLog.XML
 *.suo
 ipch
 *.vcxproj.user
+*.layout
+*.cbp
+.obj/
