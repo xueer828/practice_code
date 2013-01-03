@@ -5,6 +5,9 @@
 #include "vector"
 #include "list"
 #include "iostream"
+#include <iterator>
+#include <algorithm>
+#include "cstdlib"
 
 using namespace std;
 
@@ -215,7 +218,21 @@ int main(int argc, char* argv[])
 	printf("%.3f\n",1/3.0);
 	printf("%.3lf\n",1/3.0);
 
+	vector<int> tuble;
+	cout<<"enter int:"<<endl;
+	istream_iterator<int> init(cin),iend;
+	while(init != iend)
+	{
+		tuble.push_back(*init);
+		++init;
+	}
 
+	//copy(tuble.begin(),tuble.end(),ostream_iterator<int>(cout," "));
+	transform(tuble.begin(),tuble.end(),ostream_iterator<int>(cout,"\n"),bind2nd(less<int>(),3));
+
+	cout<<endl;
+
+	system("pause");
 	return 0;
 }
 

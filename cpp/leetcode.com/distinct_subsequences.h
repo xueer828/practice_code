@@ -26,6 +26,13 @@ Return 3.
 Solution 1: 小数据能过,大数据过不了
 */
 
+/*
+//还不是非常清楚,需要进一步分析
+Run Status: Accepted!
+Program Runtime: 68 milli secs
+Progress: 63/63 test cases passed.
+*/
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -119,21 +126,38 @@ public:
         int tlen=T.length();
         if(slen < tlen)
             return 0;
-        if(slen == tlen)
-			return 1;
 
         int cnt=0;
-        vector<vector<int> > DP(slen+1,vector<int>(tlen+1));
+		//DP[i][j], 表示的是,对应的S[i]和T[j]字符串的分解数
+		// if s[i]==t[j]; DP[i][j] = DP[i-1][j] + DP[i-1][j-1]; 这里前者表示不考虑字符s[j]的情况下,t[0..j]在s[0..i-1]的分解数; 后者表示s[i]跟t[j]对上,t[0..i-1]和s[0..j-1]的分解数
+		// if s[i] != t[j]; 如果不等,那么就只考虑s[0..i-1][j]的结果,因为s[i]和t[j]不能对上,产生出新的组合
+        vector<vector<int> > DP(slen,vector<int>(tlen));
 
-        //初始化
-        for(int i=0;i<=slen;++i)
-            for(int j=0;j<tlen,++j)
-                DP[i][j]=0;
+		for(int i=0;i<slen;++i)
+		{
+			if(S[i]==T[0])
+				if(i==0)
+					DP[i][0] = 1;
+				else
+					DP[i][0] = DP[i-1][0] + 1;
+			else
+				if(i==0)
+					DP[i][0]=0;
+				else
+					DP[i][0]=DP[i-1][0];
+		}
 
+		for(int i=1;i<slen;++i)
+			for(int j=1;j<tlen;++j)
+			{
+				if (S[i]==T[j])
+					//这里实际上市DP[i][j]=DP[i-1][j]+DP[i-1][j-1]*1 ; 这里的1是s[i]与t[j]对上的意思
+					DP[i][j]=DP[i-1][j]+DP[i-1][j-1]; 
+				else
+					DP[i][j]=DP[i-1][j];
+			}
 
-
-
-
+		cnt = DP[slen-1][tlen-1];
 
         return cnt;
     }
@@ -142,7 +166,7 @@ public:
 void solve()
 {
     Solution s;
-    cout<<s.numDistinct(string("rabbbit"),string("rabbit"))<<endl;
+    cout<<s.numDistinct(string("a"),string("b"))<<endl;
 }
 
 #endif

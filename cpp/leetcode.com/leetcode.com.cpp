@@ -1,6 +1,8 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
+#include "edit_distance.h"
+#include "divide_two_integers.h"
 #include "distinct_subsequences.h"
 #include "decode_ways.h"
 #include "count_and_say.h"
