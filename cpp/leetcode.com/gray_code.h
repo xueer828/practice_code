@@ -26,6 +26,8 @@ For example, [0,2,3,1] is also a valid gray code sequence according to the above
 For now, the judge is able to judge based on one instance of gray code sequence. Sorry about that.
 */
 
+//思路:dfs,搜索
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -41,17 +43,62 @@ For now, the judge is able to judge based on one instance of gray code sequence.
 using namespace std;
 
 class Solution {
+	vector<int> entry;
+	int total;
+	void dfs(int cur)
+	{
+		entry.push_back(cur);
+
+		if(entry.size()>= (int)pow(2,total))
+			return;
+
+		//遍历每个可能改变的位置
+		for(int i=0;i<n;++i)
+		{
+			int digit= ((1<<i) & cur);
+
+			if(digit) //不是0,即相应位置为1,把这个数变成0,遍历下一位
+			{
+				dfs((cur & ~(digit)));
+			}else{
+				dfs((cur | (1<<i)));
+			}
+		}
+	}
 public:
 	vector<int> grayCode(int n) {
 		// Start typing your C/C++ solution below
 		// DO NOT write int main() function
+		vector<int> entry;
 
+		int total=pow(2,n);
+		int cur=0;
+		while(entry.size()<total)
+		{
+			entry.push_back(cur);
+
+			//遍历每个可能改变的位置
+			for(int i=0;i<n;++i)
+			{
+				int digit= ((1<<i) & cur);
+
+				if(digit) //不是0,即相应位置为1,把这个数变成0,遍历下一位
+				{
+					entry.push_back((cur & ~(digit)));
+				}else{
+					entry.push_back((cur | (1<<i)));
+				}
+			}
+
+		}
+		return entry;
 	}
 };
 
 void solve()
 {
-
+	Solution s;
+	s.grayCode(2);
 }
 
 #endif 

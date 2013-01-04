@@ -32,6 +32,16 @@ The flattened tree should look like:
 click to show hints.
 */
 
+//实际上是将树变成只能先序遍历的链表
+
+/*
+Run Status: Accepted!
+Program Runtime: 44 milli secs
+Progress: 225/225 test cases passed.
+*/
+
+//感觉树结构还是掌握的不太好,需要继续努力啊
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -46,6 +56,13 @@ click to show hints.
 #include <cstdlib>
 using namespace std;
 
+struct TreeNode{
+	int val;
+	TreeNode *left;
+	TreeNode *right;
+	TreeNode(int x):val(x),left(NULL),right(NULL){}
+};
+
 /**
  * Definition for binary tree
  * struct TreeNode {
@@ -56,11 +73,33 @@ using namespace std;
  * };
  */
 class Solution {
+	TreeNode* get_end_node(TreeNode* root)
+	{
+		TreeNode* left=root->left,*right=root->right, *cur=root;
+		root->left = root->right = NULL; //clear
+		if(left)
+		{
+			cur->right = left;
+			cur = get_end_node(left); //cur jump to the end of left branch
+			cur->left = NULL; //clear
+		}
+
+		if(right)
+		{
+			cur->right = right;
+			cur = get_end_node(right); // jump to the end of right branch
+			cur->left = NULL;
+		}
+
+		return cur;
+	}
 public:
     void flatten(TreeNode *root) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
-        
+		if(!root)
+			return;
+        get_end_node(root);
     }
 };
 
