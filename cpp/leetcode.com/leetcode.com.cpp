@@ -1,6 +1,7 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
+#include "implement_strstr.h"
 #include "gray_code.h" //not yet
 #include "generate_parentheses.h"
 #include "flatten_binary_tree_to_linked_list.h"
