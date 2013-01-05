@@ -1,6 +1,7 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
+#include "insert_interval.h"
 #include "implement_strstr.h"
 #include "gray_code.h" //not yet
 #include "generate_parentheses.h"
