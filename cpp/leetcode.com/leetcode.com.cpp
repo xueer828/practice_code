@@ -1,6 +1,9 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
+
+#include "interleaving_sring.h"
+#include "integer_to_roman.h"
 #include "insert_interval.h"
 #include "implement_strstr.h"
 #include "gray_code.h" //not yet
