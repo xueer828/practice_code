@@ -22,6 +22,13 @@ Program Runtime: 24 milli secs
 Progress: 67/67 test cases passed.
 */
 
+/*
+Sunny字符匹配算法
+Run Status: Accepted!
+Program Runtime: 20 milli secs
+Progress: 67/67 test cases passed.
+*/
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -73,9 +80,9 @@ public:
 };
 
 
-//Sunday 算法
+//Sunday 算法,匹配速度快,而且简单易懂
 class Solution {
-	const int charsz=128;
+	const static int charsz=128;
 public:
 	char *strStr(char *haystack, char *needle) {
 		// Start typing your C/C++ solution below
@@ -94,21 +101,36 @@ public:
 			jump[i] = len_pat + 1; //初始化所有字符为模式串长+1,即在不匹配的时候,将整个模式串划过去
 
 		for(int i=0;i<len_pat;++i)
-			jump[pat[i]]=len_pat - i;
+			jump[pat[i]]=len_pat - i; //滑动距离
 
 		//开始匹配
 		int j=0;
-		while(j<len_txt-len_pat)
+		while(j<=len_txt-len_pat)
 		{
+			int i=0;
+			while(i<len_pat && txt[j+i] == pat[i]) ++i; //从前往后,直到不等或者 匹配完成
 
+			if(i==len_pat) // found
+			{
+				return txt + j;
+			}
+
+			//not found
+			j += jump[txt[j+len_pat]]; //j向后滑动,注意这里探查的是原串跟模式串对齐的后一个字符
 		}
+
+		return NULL;
 	}
 };
 
 
 void solve()
 {
-
+	Solution s;
+	char a[100]={0},b[100]={0};
+	strcpy(a,"mississippi");
+	strcpy(b,"issi");
+	s.strStr(a,b);
 }
 
 #endif
