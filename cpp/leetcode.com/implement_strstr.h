@@ -15,7 +15,7 @@ Returns a pointer to the first occurrence of needle in haystack, or null if need
 /*
 Solution 1 小数据可以过,大数据差点超时, 其实循环终止的判断可以根据
 当前判断的字符串的长度和模式串的长度直接终止判断,从而避开TLE超时,后面会给
-另外一种算法BM算法,一般情况下比KMP算法快3~5倍
+另外一种算法Sunday算法,一般情况下比KMP算法很多倍
 
 Run Status: Accepted!
 Program Runtime: 24 milli secs
@@ -73,6 +73,38 @@ public:
 };
 
 
+//Sunday 算法
+class Solution {
+	const int charsz=128;
+public:
+	char *strStr(char *haystack, char *needle) {
+		// Start typing your C/C++ solution below
+		// DO NOT write int main() function
+
+		int len_txt=strlen(haystack),len_pat=strlen(needle);
+
+		if(len_pat == 0)
+			return haystack;
+
+		char *txt=haystack, *pat=needle;
+
+		//构造字符滑动跳转表
+		int jump[charsz];
+		for(int i=0;i<charsz;++i)
+			jump[i] = len_pat + 1; //初始化所有字符为模式串长+1,即在不匹配的时候,将整个模式串划过去
+
+		for(int i=0;i<len_pat;++i)
+			jump[pat[i]]=len_pat - i;
+
+		//开始匹配
+		int j=0;
+		while(j<len_txt-len_pat)
+		{
+
+		}
+	}
+};
+
 
 void solve()
 {
@@ -80,8 +112,4 @@ void solve()
 }
 
 #endif
-
-
-
-
 
