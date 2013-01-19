@@ -110,7 +110,7 @@ unsigned long long get_1_sum_counts(int a)
 	if(a==0)
 		return 0;
 	if(a&1) //a为奇数
-		return 1 + ((a-1)>>1) + ((get_1_sum_counts((a-1)>>1))<<1);
+		return 1ULL + ((a-1)>>1) + ((get_1_sum_counts((a-1)>>1))<<1);
 	else //a为偶数
 		return get_1count1(a) + get_1_sum_counts(a-1);
 }
@@ -118,18 +118,21 @@ unsigned long long get_1_sum_counts(int a)
 //求 a~b区间 内1的个数
 unsigned long long get_1counts_range(int a, int b)
 {
+	cout<<a<<":"<<b<<endl;
 	if(a>0) //a 必须是大于0 才能求sum(n-1)
 	{
 		return get_1_sum_counts(b)-get_1_sum_counts(a-1);
 	}else if(a==0)
 		return get_1_sum_counts(b);
 	else{ //如果a是负数,还要对b分正负数情况来判断
-		if(b < -1)
-			//return ((32ULL*(-a) - get_1_sum_counts(-a-1) - (32ULL*(-b-1) + get_1_sum_counts(-b-1-1))
-			return (32ULL*(b-1-a) + get_1_sum_counts(-b) - get_1_sum_counts(-a-1));
-		else if(b==-1)
+		if(b < -1) // here the max(b)=-2
+			//return ((32ULL*(-a) - get_1_sum_counts(-a-1) - (32ULL*(-b-1) - get_1_sum_counts(-b-1-1))
+			//here ~a + 1 = -a (positive number), so -a -1 = ~a;
+			//return (32ULL*(b+1-a) + get_1_sum_counts(-b-2) - get_1_sum_counts(-a-1));
+			return (32ULL*(b+1-a) + get_1_sum_counts(-b-2) - get_1_sum_counts(-a-1));
+		else if(b==-1) //here b == -1, it's the start point
 			return 32ULL*(-a)-get_1_sum_counts(-a-1);
-		else{ //b为正数
+		else{ //b is non-negetive value
 			return 32ULL*(-a)-get_1_sum_counts(-a-1) + get_1_sum_counts(b);
 		}
 	}
@@ -138,14 +141,18 @@ unsigned long long get_1counts_range(int a, int b)
  
 void solve()
 {
-	ifstream cin("a.txt");
+	//ifstream cin("a.txt");
 	int runs;
-	cin>>runs;
-	while(runs--)
+	//cin>>runs;
+	//while(runs--)
 	{
 		int a,b;
 		cin>>a>>b;
-		cout<<get_1counts_range(a,b)<<endl;
+		unsigned long long c=get_1_sum_counts(-0x80000000-2);
+		cout<<c<<"::";
+		c=get_1_sum_counts(-0x80000000-1);
+		cout<<c<<endl;
+		cout<<get_1counts_range(0x80000000,0x80000001)<<endl;
 	}
 }
 
