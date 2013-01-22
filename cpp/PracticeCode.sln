@@ -43,6 +43,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "leetcode.com", "leetcode.co
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InterviewStreet", "InterviewStreet\InterviewStreet.vcxproj", "{219CAAC4-DD01-4A50-AEAF-55DF2E60AE39}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "51weixue", "51weixue\51weixue.vcxproj", "{C835F720-EF0E-4765-A9B6-CCB3C5D9F121}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -125,6 +127,10 @@ Global
 		{219CAAC4-DD01-4A50-AEAF-55DF2E60AE39}.Debug|Win32.Build.0 = Debug|Win32
 		{219CAAC4-DD01-4A50-AEAF-55DF2E60AE39}.Release|Win32.ActiveCfg = Release|Win32
 		{219CAAC4-DD01-4A50-AEAF-55DF2E60AE39}.Release|Win32.Build.0 = Release|Win32
+		{C835F720-EF0E-4765-A9B6-CCB3C5D9F121}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C835F720-EF0E-4765-A9B6-CCB3C5D9F121}.Debug|Win32.Build.0 = Debug|Win32
+		{C835F720-EF0E-4765-A9B6-CCB3C5D9F121}.Release|Win32.ActiveCfg = Release|Win32
+		{C835F720-EF0E-4765-A9B6-CCB3C5D9F121}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -43,13 +43,14 @@ f(1)=1+f(1/2)=1+f(0),f(0)=0+f(0/2)=0+f(0)
 
 本题求解的是数P到数Q的1的个数,可以直接用S(Q)-S(P-1)从而得出结果
 
-负数的特殊处理: 我们知道对应的 数值的正数的表达式 (-X)10 = (二进制数值部分)2 取反 然后加1, 
-这里要求 (二进制数值部分)2 中1的个数
-那么可以知道 (二进制数值部分)2 = ~( ((-X)10 -1 ) ) = 十进制的正数部分 减 1 然后取反 
-进而,可以知道, 负数的f(N)=为其中(abs(N)-1)的0的个数+符号位1=(-N-1)的0的个数+1
-那么Sum(N)=sum(f(N)+f(N+1)+f(N+2)+...f(-1))=(31-f(-N-1)+1 + 31-f(-N-2)+1 ... + 31-f(0)+1)
-=(32-f(-N-1)+32-f(-N-2)+...+32+f(0))
-=(32*(-N)-S(-N-1)) 注意这里N为负数,那么-N则为正数
+负数的特殊处理: 
+我们知道一个负数的补码=abs(负数)取反,然后再加1,那么我们能够求出abs(负数)中1的个数,也就是说,abs(负数)取反之后,1的个数等于取反之前0的个数 (暂不考虑符号位)
+|-X|补码 = |abs(-X)|反 + 1, 那么两边都减去1, 
+的到|-X-1|补码 = |abs(-X)| 那么,-(X+1)的补码中1的个数,为abs(-X)对应的0的个数,那么可以用{31-abs(-X)中1的个数}即为要求的|-(X+1)|补码对应的1的个数
+那么如果要求数-X-1的1的个数 即等于 {31-abs(-X)中1的个数 + 符号位1} = 32 - abs(-X)中1的个数
+也就是说, -X的1的个数 = {32 - abs(-(X-1))的1的个数}
+
+考虑到abs(-(X-1))中 X最小为1,那么 f[-X..-1] = 32*X - sum(abs(-(X-1)))
 
 */
 
@@ -118,7 +119,6 @@ unsigned long long get_1_sum_counts(int a)
 //求 a~b区间 内1的个数
 unsigned long long get_1counts_range(int a, int b)
 {
-	cout<<a<<":"<<b<<endl;
 	if(a>0) //a 必须是大于0 才能求sum(n-1)
 	{
 		return get_1_sum_counts(b)-get_1_sum_counts(a-1);
@@ -126,10 +126,10 @@ unsigned long long get_1counts_range(int a, int b)
 		return get_1_sum_counts(b);
 	else{ //如果a是负数,还要对b分正负数情况来判断
 		if(b < -1) // here the max(b)=-2
-			//return ((32ULL*(-a) - get_1_sum_counts(-a-1) - (32ULL*(-b-1) - get_1_sum_counts(-b-1-1))
-			//here ~a + 1 = -a (positive number), so -a -1 = ~a;
-			//return (32ULL*(b+1-a) + get_1_sum_counts(-b-2) - get_1_sum_counts(-a-1));
-			return (32ULL*(b+1-a) + get_1_sum_counts(-b-2) - get_1_sum_counts(-a-1));
+			// here range = [a..(b+1)] b<-1
+			//return ((32ULL*(-a) - get_1_sum_counts(-a-1) - (32ULL*(-(b+1)) - get_1_sum_counts(-(b+1)-1))
+			//即为 return (32ULL*(b+1-a) + get_1_sum_counts(-(b+1)-1) - get_1_sum_counts(-a-1));
+			return (32ULL*(b+1-a) + get_1_sum_counts(-(b+2)) - get_1_sum_counts(-(a+1)));
 		else if(b==-1) //here b == -1, it's the start point
 			return 32ULL*(-a)-get_1_sum_counts(-a-1);
 		else{ //b is non-negetive value
@@ -143,16 +143,12 @@ void solve()
 {
 	//ifstream cin("a.txt");
 	int runs;
-	//cin>>runs;
-	//while(runs--)
+	cin>>runs;
+	while(runs--)
 	{
 		int a,b;
 		cin>>a>>b;
-		unsigned long long c=get_1_sum_counts(-0x80000000-2);
-		cout<<c<<"::";
-		c=get_1_sum_counts(-0x80000000-1);
-		cout<<c<<endl;
-		cout<<get_1counts_range(0x80000000,0x80000001)<<endl;
+		cout<<get_1counts_range(a,b)<<endl;
 	}
 }
 
