@@ -2,8 +2,8 @@
 // http://www.51weixue.com
 
 
-
-#include "find_local_min_20130117.h"
+#include "20130123_Judge_Binary_Search_Tree.h"
+#include "20130117_Find_Local_Min.h"
 
 int main(int argc, char* argv[])
 {

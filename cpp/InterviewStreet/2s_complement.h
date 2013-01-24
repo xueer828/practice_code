@@ -131,9 +131,9 @@ unsigned long long get_1counts_range(int a, int b)
 			//¼´Îª return (32ULL*(b+1-a) + get_1_sum_counts(-(b+1)-1) - get_1_sum_counts(-a-1));
 			return (32ULL*(b+1-a) + get_1_sum_counts(-(b+2)) - get_1_sum_counts(-(a+1)));
 		else if(b==-1) //here b == -1, it's the start point
-			return 32ULL*(-a)-get_1_sum_counts(-a-1);
+			return 32ULL*(-a)-get_1_sum_counts(-(a+1));
 		else{ //b is non-negetive value
-			return 32ULL*(-a)-get_1_sum_counts(-a-1) + get_1_sum_counts(b);
+			return 32ULL*(-a)-get_1_sum_counts(-(a+1)) + get_1_sum_counts(b);
 		}
 	}
 }

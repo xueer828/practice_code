@@ -77,7 +77,10 @@
     <ClCompile Include="51weixue.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="find_local_min_20130117.h" />
+    <ClInclude Include="20130117_Find_Local_Min.h" />
+    <ClInclude Include="20130118_max_distance.h" />
+    <ClInclude Include="20130123_Judge_Binary_Search_Tree.h" />
+    <ClInclude Include="20130124_Cicle_Pans_In_Well.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
