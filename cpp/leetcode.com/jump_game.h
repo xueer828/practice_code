@@ -122,7 +122,7 @@ public:
 		int max_val=A[0],cur_pos=0;
 		while(1)
 		{
-			//获取最大
+			//获取最大最长的跳
 			for(int i=1;i<=max_val;++i)
 			{
 

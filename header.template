@@ -1,0 +1,30 @@
+#ifndef _TEST_
+#define _TEST_
+
+// $FILE_BASE$
+// Copyright (c) $YEAR$/$MONTH$/$DAY$ 
+// Author: xdutaotao (xdutaotao@gmail.com)
+// 
+
+$end$
+
+#include <cstdio>
+#include <iostream>
+#include <fstream>
+#include <cassert>
+#include <vector>
+#include <string>
+#include <algorithm>
+#include <map>
+#include <stack>
+#include <queue>
+#include <deque>
+#include <cstdlib>
+using namespace std;
+
+
+void solve()
+{
+}
+
+#endif 

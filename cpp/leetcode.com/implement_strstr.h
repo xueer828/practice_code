@@ -101,7 +101,7 @@ public:
 			jump[i] = len_pat + 1; //初始化所有字符为模式串长+1,即在不匹配的时候,将整个模式串划过去
 
 		for(int i=0;i<len_pat;++i)
-			jump[pat[i]]=len_pat - i; //滑动距离
+			jump[pat[i]]=len_pat - i; //滑动距离,为向右最多的滑动距离
 
 		//开始匹配
 		int j=0;

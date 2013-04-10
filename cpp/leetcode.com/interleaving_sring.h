@@ -29,7 +29,7 @@ When s3 = "aadbbbaccc", return false.
 //      DP[i][j-1] if s2[i]==s3[i+j] }
 
 /*
-DP pass
+DP pass 大数据也过了 DP
 Run Status: Accepted!
 Program Runtime: 16 milli secs
 Progress: 99/99 test cases passed.
@@ -97,15 +97,18 @@ public:
 		if(len_s1 + len_s2 != len_s3)
 			return false;
 
-		if(len_s1==0 && s2 == s3)
-			return true;
+		if(len_s1==0)
+			return s2==s3;
 
-		if(len_s2 == 0 && s1==s3)
-			return true;
+		if(len_s2 == 0)
+			return s1==s3;
 
 		vector<vector<int> > DP(len_s1+1,vector<int>(len_s2+1));
 
+		//初始化
 		DP[0][0]=1;
+
+		//初始化s1前缀和s3前缀相等的DP数组
 		for(int i=1;i<=len_s1;++i)
 		{
 			if(s1[i-1]==s3[i-1])
@@ -114,6 +117,7 @@ public:
 				DP[i][0]=0;
 		}
 
+		//初始化s2前缀和s3前缀相等的DP数组
 		for(int i=1;i<=len_s2;++i)
 		{
 			if(s2[i-1]==s3[i-1])
@@ -122,6 +126,7 @@ public:
 				DP[0][i]=0;
 		}
 
+		//进行DP推断
 		for(int i=1;i<=len_s1;++i)
 			for(int j=1;j<=len_s2;++j)
 			{

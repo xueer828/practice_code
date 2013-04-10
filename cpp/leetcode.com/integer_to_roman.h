@@ -58,6 +58,8 @@ Progress: 3999/3999 test cases passed.
 #include <cstdlib>
 using namespace std;
 
+//其实可以把这个看作是罗马数字的进制问题
+
 
 string dig_c[]={
 	"I","IV","V","IX","X",

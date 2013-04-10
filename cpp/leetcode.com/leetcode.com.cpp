@@ -1,8 +1,9 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
-
-#include "jump_game.h"
+#include "largest_rectangle_in_histogram.h"
+#include "jump_game2.h" //not yet
+#include "jump_game.h" //not solved very well
 #include "interleaving_sring.h"
 #include "integer_to_roman.h"
 #include "insert_interval.h"

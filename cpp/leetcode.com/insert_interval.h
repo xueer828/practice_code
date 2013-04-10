@@ -78,7 +78,7 @@ public:
 			}
 		}
 
-		entry.insert(it,newInterval); //插入新节点先
+		entry.insert(it,newInterval); //插入新节点先 (按照起始时间大小插入新的段)
 
 		//寻找断层
 		it = entry.begin();
@@ -87,19 +87,19 @@ public:
 			int cur_end=it->end;
 			vector<Interval>::iterator next = it+1;
 			while(next != entry.end() && cur_end >= next->start) //查找后面连续段,直到断层
-			{
+			{ //如果当前段跟后一个段有重合,即当前end大于等于下一段的start,这样必然是重合了,一直往下寻找,直到有间隙
 				if(next->end > cur_end)
-					cur_end = next->end;
+					cur_end = next->end; //如果下一段(新一段)的end比当前这一段的end长,则更新当前end到新一段的end
 				++next;
 			}
 
 			//合并/移除被覆盖的段
-			if(it != next - 1)
+			if(it != next - 1) //如果开始的段不是当前能滑过的最远的段的前一段,也就是说这两段之间有可以被合并的段,则合并
 			{
 				it->end = cur_end;
 				entry.erase(it+1,next);
 			}else{
-				++it;
+				++it; //没有可合并的,则移动到下一段
 			}
 		}
 
