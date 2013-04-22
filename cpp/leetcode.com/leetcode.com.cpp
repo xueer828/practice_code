@@ -1,6 +1,13 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
+#include "longest_valid_parentheses.h"
+#include "longest_substring_without_repeating_characters.h"
+#include "longest_consecutive_sequence.h"
+#include "longest_common_prefix.h"
+#include "letter_combinations_of_a_phone_number.h"
+#include "length_of_last_word.h"
+
 #include "largest_rectangle_in_histogram.h"
 #include "jump_game2.h" //not yet
 #include "jump_game.h" //not solved very well

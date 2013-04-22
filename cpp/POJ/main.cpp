@@ -1,6 +1,8 @@
 
 
 //here include different .h file to invoke problems
+#include "poj3264_sparse_table.h"
+
 #include "poj1009.h"
 #include "poj1061.h"
 #include "poj1088.h"

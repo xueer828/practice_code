@@ -91,6 +91,7 @@
     <ClInclude Include="poj1088.h" />
     <ClInclude Include="poj2823.h" />
     <ClInclude Include="poj3250.h" />
+    <ClInclude Include="poj3264_sparse_table.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

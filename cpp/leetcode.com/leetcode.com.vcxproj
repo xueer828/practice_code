@@ -119,6 +119,7 @@
     <ClInclude Include="length_of_last_word.h" />
     <ClInclude Include="letter_combinations_of_a_phone_number.h" />
     <ClInclude Include="longest_common_prefix.h" />
+    <ClInclude Include="longest_consecutive_sequence.h" />
     <ClInclude Include="longest_palindromic_substring.h" />
     <ClInclude Include="longest_substring_without_repeating_characters.h" />
     <ClInclude Include="longest_valid_parentheses.h" />

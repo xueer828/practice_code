@@ -18,6 +18,11 @@ Given s = "Hello World",
 return 5.
 */
 
+/*
+Run Status: Accepted!
+Program Runtime: 24 milli secs
+*/
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -35,15 +40,29 @@ using namespace std;
 class Solution {
 public:
 	int lengthOfLastWord(const char *s) {
-		// Start typing your C/C++ solution below
-		// DO NOT write int main() function
+		if(!s) return 0;
 
+		const char* t=s;
+		while(*t) ++t;
+
+		--t; //ÅÙ³ý×îºóµÄ¿Õ×Ö·û
+		while(*t == ' ' && t >= s) --t;
+
+		int cnt=0;
+		while(t >= s)
+		{
+			if(*t == ' ') break;
+			++cnt,--t;
+		}
+	
+		return cnt;
 	}
 };
 
 void solve()
 {
-
+	Solution s;
+	cout<<s.lengthOfLastWord("a")<<endl;
 }
 
 #endif
