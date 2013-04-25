@@ -45,8 +45,16 @@ public:
 		for(int i=0;i<sz;++i)
 		{
 			if(s[i]=='(')
+			{
+				/*
+				while(con.size()>0 && con.top() == '(')
+				{
+					con.pop();
+					cnt = 0;
+				}*/
 				con.push(s[i]);
-			else if(con.size()>0 && con.top()=='(')
+			}
+			else if(con.size()>0 && con.top()=='(') //不是 ( 必然是另外一般括号 ')'
 			{
 				con.pop();
 				cnt += 2;

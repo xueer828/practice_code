@@ -22,6 +22,13 @@ Given height = [2,1,5,6,2,3],
 return 10.
 */
 
+/*
+Solution2 AC, Solution 1 LTE
+Run Status: Accepted!
+Program Runtime: 92 milli secs
+Progress: 94/94 test cases passed.
+ */
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -36,7 +43,7 @@ return 10.
 #include <cstdlib>
 using namespace std;
 
-//简单解法1
+//简单解法1, 超时,算法复杂度O(n^2)
 //起点,终点
 
 class Solution1 {
@@ -67,19 +74,76 @@ public:
 	}
 };
 
+//算法2, 利用单调栈特性,算法复杂度O(n)
+/*
+单调递增栈
+ */
 
-class Solution2 {
+class Solution {
+	struct rec 
+	{
+		int h,p;
+		rec():h(0),p(0){};
+		rec(int nh,int np):h(nh),p(np){};
+	};
 public:
 	int largestRectangleArea(vector<int> &height) {
 		// Start typing your C/C++ solution below
 		// DO NOT write int main() function
+		int sz=height.size();
+		if(sz <=0)
+			return 0;
 
+		stack<rec> srec;
+		srec.push(rec()); //压入一个0作为最低,防止下溢
+		int i=0,mx_area=0;
+		for(i=0;i<sz;++i)
+		{
+			if(height[i] > srec.top().h)
+			{
+				srec.push(rec(height[i],i));
+				continue;
+			}
+			
+			int start_point=i;
+			//如果当前height小于顶端,则弹出顶端,并进行计算
+			while(height[i] < srec.top().h)
+			{
+				rec tmp=srec.top();
+				srec.pop();
+				int area=(i-tmp.p)*tmp.h;
+				if(area > mx_area)
+					mx_area = area;
+				start_point = tmp.p;
+			}
+
+			//压入当前的height
+			srec.push(rec(height[i],start_point));
+		}
+
+		//在压入完成之后,还需检查在单调栈内的剩余面积
+		while(srec.size()>0)
+		{
+			rec tmp=srec.top();
+			srec.pop();
+			int area=(i-tmp.p)*tmp.h;
+			if(area > mx_area)
+				mx_area = area;
+		}
+
+		return mx_area;
 	}
 };
 
 void solve()
 {
-
+	Solution s;
+	vector<int> t;
+	t.push_back(5);
+	t.push_back(4);
+	t.push_back(1);
+	t.push_back(2);
+	cout<<s.largestRectangleArea(t);
 }
 
 #endif

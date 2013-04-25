@@ -123,6 +123,21 @@
     <ClInclude Include="longest_palindromic_substring.h" />
     <ClInclude Include="longest_substring_without_repeating_characters.h" />
     <ClInclude Include="longest_valid_parentheses.h" />
+    <ClInclude Include="maximal_rectangle.h" />
+    <ClInclude Include="maximum_depth_of_binary_tree.h" />
+    <ClInclude Include="maximum_subarray.h" />
+    <ClInclude Include="median_of_two_sorted_arrays.h" />
+    <ClInclude Include="merge_intervals.h" />
+    <ClInclude Include="merge_k_sorted_lists.h" />
+    <ClInclude Include="merge_sorted_array.h" />
+    <ClInclude Include="merge_two_sorted_lists.h" />
+    <ClInclude Include="minimum_depth_of_binary_tree.h" />
+    <ClInclude Include="minimum_path_sum.h" />
+    <ClInclude Include="minimum_window_substring.h" />
+    <ClInclude Include="multiply_strings.h" />
+    <ClInclude Include="next_perutation.h" />
+    <ClInclude Include="n_queens.h" />
+    <ClInclude Include="n_queens_2.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
