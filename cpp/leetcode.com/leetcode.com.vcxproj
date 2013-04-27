@@ -138,6 +138,21 @@
     <ClInclude Include="next_perutation.h" />
     <ClInclude Include="n_queens.h" />
     <ClInclude Include="n_queens_2.h" />
+    <ClInclude Include="palindrome_number.h" />
+    <ClInclude Include="palindrome_partitioning.h" />
+    <ClInclude Include="palindrome_partitioning2.h" />
+    <ClInclude Include="partition_list.h" />
+    <ClInclude Include="pascals_triangle.h" />
+    <ClInclude Include="pascals_triangle2.h" />
+    <ClInclude Include="path_sum.h" />
+    <ClInclude Include="path_sum2.h" />
+    <ClInclude Include="permutations.h" />
+    <ClInclude Include="permutations2.h" />
+    <ClInclude Include="permutation_sequence.h" />
+    <ClInclude Include="plus_one.h" />
+    <ClInclude Include="populating_next_right_pointers_in_each_node.h" />
+    <ClInclude Include="populating_next_right_pointers_in_each_node2.h" />
+    <ClInclude Include="pow_x_n.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

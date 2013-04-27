@@ -1,7 +1,21 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
-#include "longest_valid_parentheses.h" //(not yet)
+
+
+#include "n_queens.h"
+#include "multiply_strings.h"
+#include "merge_sorted_array.h"
+#include "merge_two_sorted_lists.h"
+#include "minimum_path_sum.h"
+#include "merge_k_sorted_lists.h"
+#include "merge_intervals.h"
+#include "minimum_depth_of_binary_tree.h"
+#include "maximum_subarray.h"
+#include "maximum_depth_of_binary_tree.h"
+#include "maximal_rectangle.h"
+
+#include "longest_valid_parentheses.h" 
 #include "longest_palindromic_substring.h"
 #include "largest_rectangle_in_histogram.h"
 
