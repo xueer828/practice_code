@@ -14,6 +14,12 @@ For example,
 [1,1,2], [1,2,1], and [2,1,1].
  */
 
+/*
+Run Status: Accepted!
+Program Runtime: 156 milli secs
+Progress: 30/30 test cases passed.
+*/
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -26,11 +32,11 @@ For example,
 #include <queue>
 #include <deque>
 #include <cstdlib>
+#include <set>
 using namespace std;
 
 class Solution {
 	vector<vector<int> > vec;
-	set<int> v;
 
 	void permute_recusive(vector<int>& num, int n)
 	{
@@ -40,12 +46,16 @@ class Solution {
 			return;
 		}
 
+		set<int> s;
 		int tmp=num[n];
 		for(int i=n;i<num.size();++i)
 		{
 			//此时需要判断需要交换的数,是否前面已经排过了
-			if(v.count(tmp))
+			//这里我们用set来表示是否已经处理完毕
+			if(i!=n && s.count(num[i]))
 				continue;
+
+			s.insert(num[i]);
 
 			num[n]=num[i];
 			num[i]=tmp;
@@ -73,6 +83,11 @@ public:
 
 void solve()
 {
+	vector<int> v(4);
+	v[0]=v[1]=2;
+	v[2]=v[3]=1;
+	Solution s;
+	s.permuteUnique(v);
 }
 
 #endif 

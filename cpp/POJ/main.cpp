@@ -1,6 +1,8 @@
 
 
 //here include different .h file to invoke problems
+
+#include "poj1731_permuation.h" //not AC
 #include "poj3264_sparse_table.h"
 
 #include "poj1009.h"

@@ -1,6 +1,10 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
+#include "permutation_sequence.h" //not yet
+#include "next_perutation.h"
+
+#include "permutations2.h"
 #include "permutations.h"
 
 #include "partition_list.h"
