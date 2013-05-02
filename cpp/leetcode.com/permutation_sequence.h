@@ -23,6 +23,8 @@ Given n and k, return the kth permutation sequence.
 Note: Given n will be between 1 and 9 inclusive.
  */
 
+//求排列数,第k个排列序列
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>

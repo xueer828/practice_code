@@ -36,11 +36,20 @@ Return
 using namespace std;
 
 class Solution {
+	vector<vector<int> res;
 public:
 	vector<vector<int> > generate(int numRows) {
 		// Start typing your C/C++ solution below
 		// DO NOT write int main() function
+		res.clear();
 
+		if(numRows <= 0)
+			return res;
+
+		for(int i=0;i<numRows;++i)
+		{
+
+		}
 	}
 };
 

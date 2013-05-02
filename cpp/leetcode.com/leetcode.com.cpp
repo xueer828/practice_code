@@ -1,9 +1,10 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
+#include "permutations.h"
 
-
-#include "n_queens.h"
+#include "partition_list.h"
+#include "n_queens.h" // not yet
 #include "multiply_strings.h"
 #include "merge_sorted_array.h"
 #include "merge_two_sorted_lists.h"
