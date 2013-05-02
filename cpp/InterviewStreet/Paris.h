@@ -7,7 +7,7 @@
 // 
 
 /*
-https://www.interviewstreet.com/challenges/dashboard/#problem/4e14b83d5fd12
+https://www.hackerrank.com/challenges/pairs
 
 Given N numbers , [N<=10^5] we need to count the total pairs of numbers that have a difference of K. [K>0 and K<1e9]
 

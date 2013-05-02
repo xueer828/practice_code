@@ -81,6 +81,8 @@
     <ClInclude Include="20130118_max_distance.h" />
     <ClInclude Include="20130123_Judge_Binary_Search_Tree.h" />
     <ClInclude Include="20130124_Cicle_Pans_In_Well.h" />
+    <ClInclude Include="20130218_merge_array.h" />
+    <ClInclude Include="20130310_Min_SumOfDistance.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

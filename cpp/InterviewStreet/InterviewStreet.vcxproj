@@ -80,9 +80,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="2s_complement.h" />
+    <ClInclude Include="Arithmetic_Progressions.h" />
+    <ClInclude Include="Billboards.h" />
     <ClInclude Include="Insertion_Sort.h" />
     <ClInclude Include="Meeting_Point.h" />
     <ClInclude Include="Paris.h" />
+    <ClInclude Include="Requirement.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
