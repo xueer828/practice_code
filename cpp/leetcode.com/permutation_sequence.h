@@ -24,7 +24,7 @@ Note: Given n will be between 1 and 9 inclusive.
  */
 
 //求排列数,第k个排列序列,直接调用next_permuate() STL算法
-//solution1 TLE 
+//solution1 大数据 TLE 
 /*
 Run Status: Time Limit Exceeded
 Last executed input
@@ -32,7 +32,10 @@ Last executed input
 */
 
 /*
-思路2: 感觉可以根据k的位置,先固定第一个字符
+思路2: 直接递归调用,已知不可能重复
+Run Status: Accepted!
+Program Runtime: 1684 milli secs
+Progress: 200/200 test cases passed.
 */
 
 #include <cstdio>
@@ -67,55 +70,62 @@ public:
 };
 
 class Solution {
-	int factors[10];
-
-	int get_fact(int n)
+	int cnt;
+	bool used[10];
+	//str表示当前状态, c是当前填充位置,n是最高位置,k是所求位置
+	bool get_permutation_cursive(string& str,int c,int n, int k)
 	{
-		if(factors[n] !=-1)
-			return factors[n];
-		if(n == 0 || n==1)
-			return (factors[0]=factors[1]=1);
-		return (factors[n]=factors[n-1]*n);
+		if(c >= n) //排列完成
+		{
+			++cnt;
+			//cout<<cnt<<":"<<str<<endl;
+			if(cnt == k) //满足
+			{
+				return true;
+			}
+			return false;
+		}
+
+		//从1到n 尝试填入位置c
+		for(int i=0;i<n;++i)
+		{
+			if(!used[i]){ //未用过,则使用它
+				used[i]=true;
+				str[c]='0'+i+1;
+				if(get_permutation_cursive(str,c+1,n,k)) //剪枝,只需要一个结果,满足则回溯
+					return true;
+				used[i]=false;
+			}
+		}
+		
+		return false;
 	}
 public:
 	string getPermutation(int n, int k) {
 		// Start typing your C/C++ solution below
 		// DO NOT write int main() function
 
-		for(int i=0;i<10;++i)
-			factors[i]=-1;
-
-		int start=1;
-		for(;start<=9;++start)
+		cnt = 0;
+		string str;
+		for(int i=0;i<n;++i)
 		{
-			if(get_fact(start)>=k)
-				break;
+			str += '0';
+			used[i]=false;
 		}
 
-		--start;
-		string s;
-		if(start > 0)
+		if(get_permutation_cursive(str,0,n,k))
 		{
-			s += ('0'+start);
+			return str;
 		}
 		
-		for(int i=1;i<=n;++i)
-		{
-			if(start <= 0 || i != start)
-				s += ('0'+i);
-		}
-
-		int idx = (start <= 0? 0: k-get_fact(start)-1);
-		while(++idx<k && next_permutation(s.begin(),s.end()));
-
-		return s;
+		return "";
 	}
 };
 
 void solve()
 {
 	Solution s;
-	cout<<s.getPermutation(3,2)<<endl;
+	cout<<s.getPermutation(3,4)<<endl;
 }
 
 #endif 
