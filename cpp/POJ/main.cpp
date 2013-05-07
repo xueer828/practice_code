@@ -2,6 +2,8 @@
 
 //here include different .h file to invoke problems
 
+#include "poj1308_is_it_a_tree.h"
+
 #include "poj1011_sticks.h"
 
 #include "poj1731_permuation.h" //not AC

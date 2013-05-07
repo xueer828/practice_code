@@ -31,6 +31,14 @@ After calling your function, the tree should look like:
 4-> 5 -> 7 -> NULL
  */
 
+
+/*
+Run Status: Accepted!
+Program Runtime: 168 milli secs
+Progress: 61/61 test cases passed.
+
+*/
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -53,12 +61,53 @@ using namespace std;
  *  TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
  * };
  */
+
+struct TreeLinkNode{
+	int val;
+	TreeLinkNode *left, *right, *next;
+	TreeLinkNode(int x):val(x),left(NULL),right(NULL),next(NULL){}
+};
 class Solution {
 public:
     void connect(TreeLinkNode *root) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
-        
+        if(!root) return;
+
+		TreeLinkNode *TNULL=NULL;
+
+		queue<TreeLinkNode*> tq;
+		tq.push(root);
+		tq.push(TNULL);
+
+		TreeLinkNode *last=NULL;
+		while(!tq.empty())
+		{
+			TreeLinkNode* n=tq.front();
+			tq.pop();
+
+			if(!n)
+			{
+				if(tq.size()>0) //这里很容易犯错误:只有在队列中还存在元素时才能压入分界符号
+					tq.push(TNULL);
+				if(last)
+					last->next = NULL;
+				last = NULL;
+				continue;
+			}
+
+			if(last)
+			{
+				last->next = n;
+			}
+			last = n; //更新last
+
+
+			if(n->left)
+				tq.push(n->left);
+			if(n->right)
+				tq.push(n->right);
+		}
     }
 };
 

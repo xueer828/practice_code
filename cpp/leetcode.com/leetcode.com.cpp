@@ -1,6 +1,13 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
+#include "pascals_triangle2.h"
+#include "pascals_triangle.h"
+
+#include "populating_next_right_pointers_in_each_node2.h"
+#include "populating_next_right_pointers_in_each_node.h"
+
+#include "pow_x_n.h"
 #include "permutation_sequence.h" //not yet
 #include "next_perutation.h"
 

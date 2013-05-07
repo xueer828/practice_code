@@ -39,6 +39,13 @@ After calling your function, the tree should look like:
 4->5->6->7 -> NULL
  */
 
+/*
+一次性通过
+Run Status: Accepted!
+Program Runtime: 136 milli secs
+Progress: 14/14 test cases passed.
+*/
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -61,12 +68,49 @@ using namespace std;
  *  TreeLinkNode(int x) : val(x), left(NULL), right(NULL), next(NULL) {}
  * };
  */
+
+struct TreeLinkNode{
+	int val;
+	TreeLinkNode *left, *right, *next;
+	TreeLinkNode(int x):val(x),left(NULL),right(NULL),next(NULL){}
+};
 class Solution {
 public:
     void connect(TreeLinkNode *root) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
-        
+        if(!root) return;
+
+		queue<TreeLinkNode*> tq;
+
+		int mx_ct=1,ct=0;
+		tq.push(root);
+
+		TreeLinkNode *last=NULL;
+		while(!tq.empty())
+		{
+			TreeLinkNode* n=tq.front();
+			tq.pop();
+			++ct;
+			if(last){
+				last->next = n;
+			}
+			last = n;
+
+			if(ct == mx_ct)
+			{
+				mx_ct *= 2;
+				ct = 0;
+				last->next = NULL;
+				last = NULL;
+			}
+
+			if(n->left)
+				tq.push(n->left);
+			if(n->right)
+				tq.push(n->right);
+
+		}
     }
 };
 

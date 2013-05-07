@@ -20,6 +20,8 @@ Return
 ]
  */
 
+//思路: dfs 深度递归
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -35,6 +37,20 @@ Return
 using namespace std;
 
 class Solution {
+	vector<vector<string> > rt;
+	void dfs(string& s, vector<string>& v, int n)
+	{
+		if(n >= s.size())
+		{
+			rt.push_back(v);
+			return;
+		}
+
+		for(int i=n;i<s.size();++i)
+		{
+
+		}
+	}
 public:
 	vector<vector<string>> partition(string s) {
 		// Start typing your C/C++ solution below
