@@ -24,9 +24,24 @@ http://poj.org/problem?id=1308
 #include <cstdlib>
 using namespace std;
 
+struct node 
+{
+	int degree,parent;
+	node(int d=0,int p=-1):degree(d),parent(p){};
+};
+
+int findp(map<int,node>& mp,int c, int next)
+{
+	if(mp[next].parent < 0)
+		return next;
+	else if(mp[next].parent != c)
+		return (mp[next].parent = findp(mp,c,mp[next].parent));
+	return c;
+}
+
 void solve()
 {
-	map<int,int> mp;
+	map<int,node> mp;
 
 	int m,n;
 	int count=0;
@@ -35,20 +50,20 @@ void solve()
 	{
 		while(cin>>m>>n)
 		{
-			if(m==-1 && n==-1)
+			if(m==-1 && n==-1) //完成所有批次
 				return;
 
-			if(m==0 && n==0)
+			if(m==0 && n==0) //完成一个批次
 			{
 				//start new
 				++count;
 
-				map<int,int>::iterator it=mp.begin();
+				map<int,node>::iterator it=mp.begin();
 				int root=-1;
 				isTree = true;
 				for(;it!=mp.end();++it)
 				{
-					if(it->second == 0)
+					if(it->second.degree == 0)
 					{
 						if(root > 0)
 						{
@@ -59,7 +74,7 @@ void solve()
 						}
 					}
 
-					if(it->second >= 2)
+					if(it->second.degree >= 2)
 					{
 						isTree = false;
 						break;
@@ -73,6 +88,20 @@ void solve()
 				if(mp.size()==0)
 					isTree=true;
 
+				//判断是否存在 环 + 树 的森林存在
+				if(isTree && root > 0)
+				{
+					it=mp.begin();
+					for(;it!=mp.end();++it)
+					{
+						if(findp(mp,it->first,it->first) != root)
+						{
+							isTree = false;
+							break;
+						}
+					}
+				}
+
 
 				cout<<"Case "<<count<<" is "<<(isTree?"a tree.":"not a tree.")<<endl;
 				isTree = false;
@@ -81,14 +110,17 @@ void solve()
 			}
 
 			if(mp.count(m)<=0)
-				mp[m]=0;
-			
+				mp[m]=node(0);
+
 			if(mp.count(n)<=0)
-				mp[n]=1;
-			else
-				++mp[n];
+				mp[n]=node(1,m);
+			else{
+				mp[n].parent=m; //不论是否存在两个父节点,均进行覆盖,两个父节点情况通过入度来确定
+				++mp[n].degree;
+			}
 		}
 	}
 }
+
 
 #endif

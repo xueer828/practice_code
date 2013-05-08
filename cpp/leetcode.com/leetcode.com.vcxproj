@@ -153,6 +153,13 @@
     <ClInclude Include="populating_next_right_pointers_in_each_node.h" />
     <ClInclude Include="populating_next_right_pointers_in_each_node2.h" />
     <ClInclude Include="pow_x_n.h" />
+    <ClInclude Include="recover_binary_search_tree.h" />
+    <ClInclude Include="regular_expression_matching.h" />
+    <ClInclude Include="remove_duplicates_from_sorted_array.h" />
+    <ClInclude Include="remove_duplicates_from_sorted_array2.h" />
+    <ClInclude Include="remove_duplicates_from_sorted_list.h" />
+    <ClInclude Include="remove_duplicates_from_sorted_list2.h" />
+    <ClInclude Include="remove_element.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
