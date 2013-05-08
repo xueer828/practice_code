@@ -1,6 +1,8 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
+#include "recover_binary_search_tree.h"
+
 #include "pascals_triangle2.h"
 #include "pascals_triangle.h"
 
