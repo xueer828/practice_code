@@ -87,6 +87,7 @@
     <ClInclude Include="poj1009_n.h" />
     <ClInclude Include="poj1011_sticks.h" />
     <ClInclude Include="poj1018.h" />
+    <ClInclude Include="poj1035_spell_checker.h" />
     <ClInclude Include="poj1061.h" />
     <ClInclude Include="poj1067_n.h" />
     <ClInclude Include="poj1088.h" />
@@ -94,6 +95,7 @@
     <ClInclude Include="poj1731_permuation.h" />
     <ClInclude Include="poj2499_binary_tree.h" />
     <ClInclude Include="poj2823.h" />
+    <ClInclude Include="poj3089_string_replace.h" />
     <ClInclude Include="poj3250.h" />
     <ClInclude Include="poj3264_sparse_table.h" />
   </ItemGroup>

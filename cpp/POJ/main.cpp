@@ -1,6 +1,10 @@
 
 
 //here include different .h file to invoke problems
+
+
+#include "poj1035_spell_checker.h"
+#include "poj3089_string_replace.h"
 #include "poj2499_binary_tree.h"
 #include "poj1308_is_it_a_tree.h"
 
