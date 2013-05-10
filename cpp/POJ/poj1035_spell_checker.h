@@ -29,10 +29,12 @@ using namespace std;
 struct node{
 	node* mp[26];
 	string t;
-	node():t(""){memset(mp,0,sizeof(node*)*26);}
+	int seq;
+	node():seq(0),t(""){memset(mp,0,sizeof(node*)*26);}
 };
 
-void add_node(node* dict,string s)
+//构建trie树
+void add_node(node* dict,string s, int seq)
 {
 	if(s.length()<=0)
 		return;
@@ -44,60 +46,56 @@ void add_node(node* dict,string s)
 		t = t->mp[s[i]-'a'];
 	}
 	t->t = s;
+	t->seq = seq;
 }
 
-int correct(node* dict, string& in, int n, bool fixed, vector<string>& vs)
+bool correct(node* dict, string& in, int n, bool fixed, map<int,string>& vs)
 {
 	assert(dict);
 	if(n >= in.size())
 	{
-		if(dict->t == "" && fixed) //如果字符已经完毕,但是还剩余一个字符可以改,则继续下去
-			return 0;
-		else if(dict->t != "") 
+		if(dict->t == "" && fixed) //增删改使用完毕,但是未匹配
+			return false;
+		else if(dict->t != "")//存在匹配,添加匹配
 		{
-			vs.push_back(dict->t);
-			if(fixed)
-				return 1;
-			else
-				return 2;
+			if(vs.count(dict->seq) <= 0)
+				vs[dict->seq]=dict->t;
+			return (!fixed);
 		}else{ //not node, and fixed == false
 			for(int i=0;i<26;++i)
 			{
 				node* p=dict->mp[i];
 				if(p && p->t != "")
 				{
-					vs.push_back(p->t);
+					if(vs.count(p->seq)<=0)
+						vs[p->seq]=p->t;
 				}
 			}
-			return 1;
+			return false;
 		}		
 	}
 
-	//如果本层存在对应的字符,则匹配
+	//如果本层存在对应的字符,则匹配下去
 	node* p;
 	if(p=dict->mp[in[n]-'a'])
 	{
 		if(correct(p,in,n+1,fixed,vs))
 			return true;
-	}else{
+	}
+	
+	if(!fixed){ //如果未经过增删改
+		//首先尝试删除,这个不匹配的字符
+		correct(dict,in,n+1,true,vs);
+
+		//然后尝试插入新字符和修改为新字符
 		for(int i=0;i<26;++i)
 		{
-			p=dict->mp[i];
 			bool flag;
-			if(!fixed) //存在字符,且未做过任何修改,则进行修改
-			{
-				//删除
-				if(correct(dict,in,n+1,true,vs))
-					break;
-
-				if(p){
-					//增加
-					if(correct(p,in,n,true,vs))
-						break;
-					//改
-					if(correct(p,in,n+1,true,vs))
-						break;
-				}
+			if(p=dict->mp[i]){
+				//增加
+				correct(p,in,n,true,vs);
+				//改
+				correct(p,in,n+1,true,vs);
 			}
 		}
 	}
@@ -109,12 +107,13 @@ void solve()
 {
 	string tmp;
 	node dict; //字典
+	int ct=0;
 	while(cin>>tmp)
 	{
 		if(tmp == "#")
 			break;
 
-		add_node(&dict,tmp);		
+		add_node(&dict,tmp,++ct);		
 	}
 
 	//dict is ready.
@@ -124,14 +123,15 @@ void solve()
 		if(tmp == "#")
 			break;
 
-		vector<string> ts;
+		map<int,string> ts;
 		if(correct(&dict,tmp,0,false,ts))
 		{
 			cout<<tmp<<" is correct"<<endl;
 		}else{
 			cout<<tmp<<":";
-			for(int i=0;i<ts.size();++i)
-				cout<<" "<<ts[i];
+			map<int,string>::iterator i=ts.begin();
+			for(;i!=ts.end();++i)
+				cout<<" "<<i->second;
 			cout<<endl;
 		}
 	}
