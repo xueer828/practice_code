@@ -17,6 +17,13 @@ Given input array A = [1,1,2],
 Your function should return length = 2, and A is now [1,2].
  */
 
+/*
+大意了,竟然不能一次性AC
+Run Status: Accepted!
+Program Runtime: 80 milli secs
+Progress: 160/160 test cases passed.
+*/
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -36,12 +43,29 @@ public:
 	int removeDuplicates(int A[], int n) {
 		// Start typing your C/C++ solution below
 		// DO NOT write int main() function
+		if(!A || n<=0) return 0;
 
+		int p1=0,p2=1; //一前一后两指针
+
+		//p1为写位置,p2为读位置,只有当p2的值等于p1位置的值,且p1跟p2不在同一位置时,只移动读位置
+		while(p2 < n)
+		{
+			if(A[p1] != A[p2])
+			{
+				A[++p1] = A[p2];
+			}
+			++p2;
+		}
+
+		return p1+1;
 	}
 };
 
 void solve()
 {
+	int arr[]={1,1,1};
+	Solution s;
+	s.removeDuplicates(arr,3);
 }
 
 #endif 

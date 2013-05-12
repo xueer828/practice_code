@@ -1,6 +1,15 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
+#include "remove_nth_node_from_end_of_list.h"
+#include "remove_element.h"
+#include "remove_duplicates_from_sorted_list2.h"
+#include "remove_duplicates_from_sorted_list.h"
+
+#include "remove_duplicates_from_sorted_array2.h"
+#include "remove_duplicates_from_sorted_array.h"
+
+#include "regular_expression_matching.h"
 #include "recover_binary_search_tree.h"
 
 #include "pascals_triangle2.h"
