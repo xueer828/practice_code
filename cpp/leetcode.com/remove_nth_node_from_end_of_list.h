@@ -21,6 +21,11 @@ Try to do this in one pass.
 
 /*
 经典题目,双指针删nth节点
+
+似乎还不是那么容易一下子就完全写对呢...faint
+Run Status: Accepted!
+Program Runtime: 36 milli secs
+Progress: 207/207 test cases passed.
 */
 
 #include <cstdio>
@@ -61,16 +66,20 @@ public:
         if(!head) return NULL;
 
 		ListNode *p1(head),*p2(head);
-		while(n-- && p1->next) //两指针之间相差n,后一个指针的后一个节点即为移除节点
+		while(p1->next && n--) //两指针之间相差n,后一个指针的后一个节点即为移除节点
 		{
 			p1 = p1->next;
 		}
 
-		if (n > 1)
+		if(n == 1) //此时移除的是头结点
+		{
+			//应该处理下最开始的要删除掉的头结点
+
+			return (head=head->next);
+		}else if (n > 1)
 		{
 			return head;
-		}else if(n == 1)
-			return(head=head->next);
+		}
 
 		while(p1->next)
 		{
@@ -78,6 +87,7 @@ public:
 			p2 = p2->next;
 		}
 
+		//应该处理掉删除的节点
 		p2->next = p2->next->next;
 		
 		return head;

@@ -1,6 +1,10 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
+#include "reverse_nodes_in_k_group.h"
+#include "reverse_linked_list2.h"
+#include "reverse_integer.h"
+
 #include "remove_nth_node_from_end_of_list.h"
 #include "remove_element.h"
 #include "remove_duplicates_from_sorted_list2.h"

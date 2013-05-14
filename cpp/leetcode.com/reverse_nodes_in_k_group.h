@@ -46,19 +46,72 @@ using namespace std;
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+
+struct ListNode{
+	int val;
+	ListNode *next;
+	ListNode(int x=0):val(x),next(NULL){};
+};
+
 class Solution {
 public:
     ListNode *reverseKGroup(ListNode *head, int k) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
-        
+        if(!head || k<=1) return head;
+
+		ListNode *beg(head),*end(head);
+		ListNode *pre=NULL,*cur,*post;
+		for(;;)
+		{
+			int cnt=k;
+			while(end->next && --cnt)
+			{
+				end = end->next;
+			}
+
+			//beg和end为逆转区间(不包含beg)
+			if(cnt > 0) //如果不够k,则跳出loop,不再逆转
+				break;
+
+			//逆转[beg,end]区间			
+			cur = beg; //cur为要逆转的一个节点
+			pre=end->next; //pre为下一组的起始节点
+			ListNode* next=end->next;
+			while(cur!=next)
+			{
+				post=cur->next;
+				cur->next = pre;
+				pre=cur;
+				cur=post;
+			}
+
+			if(beg==head) //如果beg是头结点,
+				head = pre; //那么置头结点为第一组k的逆转后头节点pre
+
+			//更新新的beg和end节点
+			beg = end->next;
+			end = beg;
+
+			if(!beg)
+				break;
+		}
+
+		return head;
     }
 };
 
 
 void solve()
 {
+	ListNode l[2];
+	l[0].val = 1;
+	l[1].val = 2;
+	l[0].next = &l[1];
 
+
+	Solution s;
+	s.reverseKGroup(l,2);
 }
 
 #endif
