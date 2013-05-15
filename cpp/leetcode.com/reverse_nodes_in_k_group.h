@@ -60,7 +60,7 @@ public:
         // DO NOT write int main() function
         if(!head || k<=1) return head;
 
-		ListNode *beg(head),*end(head);
+		ListNode *beg(head),*end(head),*last(NULL);
 		ListNode *pre=NULL,*cur,*post;
 		for(;;)
 		{
@@ -70,8 +70,8 @@ public:
 				end = end->next;
 			}
 
-			//beg和end为逆转区间(不包含beg)
-			if(cnt > 0) //如果不够k,则跳出loop,不再逆转
+			//beg和end为逆转区间 [beg,end]
+			if(cnt > 1) //如果不够k,则跳出loop,不再逆转
 				break;
 
 			//逆转[beg,end]区间			
@@ -88,9 +88,12 @@ public:
 
 			if(beg==head) //如果beg是头结点,
 				head = pre; //那么置头结点为第一组k的逆转后头节点pre
+			else //如果不是,那么把前面已经逆转完毕的节点加上逆转后的节点pre
+				end->next = pre;
+
 
 			//更新新的beg和end节点
-			beg = end->next;
+			beg = next;
 			end = beg;
 
 			if(!beg)
@@ -104,10 +107,15 @@ public:
 
 void solve()
 {
-	ListNode l[2];
+	ListNode l[4];
 	l[0].val = 1;
 	l[1].val = 2;
+	l[2].val = 3;
+	l[3].val = 4;
 	l[0].next = &l[1];
+	l[1].next = &l[2];
+	l[2].next = &l[3];
+
 
 
 	Solution s;
