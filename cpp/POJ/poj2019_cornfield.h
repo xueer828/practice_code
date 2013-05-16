@@ -31,9 +31,30 @@ http://poj.org/problem?id=2019
 #include <cstdlib>
 using namespace std;
 
+//求log2的函数
+int lg2(int v)
+{
+	int cnt=0;
+	while(v)
+	{
+		v >>= 1;
+		++cnt;
+	}
+	return cnt;
+}
 
+const int W=250;
+
+//mx和mn数组的意义: mx[i][x][y] 表示以(x,y)为顶点的2^i为宽度的方格中最大或者最小值
+int mx[8][W][W]; //最大ST数组
+int mn[8][W][W]; //最小ST数组
+
+//推导公式:mx[i][x][y]=max{mx[i-1][x][y],mx[i-1][x+(1<<(i-1))][y],mx[i-1][x][y+(1<<(i-1))],mx[i-1][x+(1<<(i-1))][y+(1<<(i-1))]}
+//即:将边长为2^i的以(x,y)为左上角的方格,划分为以2^(i-1)为边长的四个方格
 void solve()
 {
+
+	cout<<lg2(250)<<endl;
 }
 
 #endif 
