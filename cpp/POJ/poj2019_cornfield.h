@@ -51,10 +51,87 @@ int mn[8][W][W]; //最小ST数组
 
 //推导公式:mx[i][x][y]=max{mx[i-1][x][y],mx[i-1][x+(1<<(i-1))][y],mx[i-1][x][y+(1<<(i-1))],mx[i-1][x+(1<<(i-1))][y+(1<<(i-1))]}
 //即:将边长为2^i的以(x,y)为左上角的方格,划分为以2^(i-1)为边长的四个方格
+
+
 void solve()
 {
 
-	cout<<lg2(250)<<endl;
+	int wid,qwid,qnum;
+	cin>>wid>>qwid>>qnum;
+
+	int tmp;
+	for(int i=0;i<wid;++i)
+	{
+		for(int j=0;j<wid;++j)
+		{
+			cin>>tmp;
+			mx[0][i][j]=mn[0][i][j]=tmp;
+		}
+	}
+
+	int z=lg2(wid);
+	for(int k=1;k<=z;++k)
+	{
+		for(int i=0;i<wid;i += (1<<k))
+		{
+			for(int j=0;j<wid;j+= (1<<k))
+			{
+				//求max和min
+				int tmx,tmn;
+				tmx=tmn=mx[k-1][i][j];
+
+				if(mx[k-1][i+(1<<(k-1))][j] > tmx)
+					tmx = mx[k-1][i+(1<<(k-1))][j];
+				if(mn[k-1][i+(1<<(k-1))][j] < tmn)
+					tmn = mn[k-1][i+(1<<(k-1))][j];
+
+				if(mx[k-1][i][j+(1<<(k-1))] > tmx)
+					tmx = mx[k-1][i][j+(1<<(k-1))];
+				if(mn[k-1][i][j+(1<<(k-1))] < tmn)
+					tmn = mn[k-1][i][j+(1<<(k-1))];
+
+				if(mx[k-1][i+(1<<(k-1))][j+(1<<(k-1))] > tmx)
+					tmx = mx[k-1][i+(1<<(k-1))][j+(1<<(k-1))];
+				if(mn[k-1][i+(1<<(k-1))][j+(1<<(k-1))] < tmn)
+					tmn = mn[k-1][i+(1<<(k-1))][j+(1<<(k-1))];
+
+
+				mx[k][i][j] = tmx;
+				mn[k][i][j] = tmn;
+
+			}
+		}
+	}
+
+	int w=lg2(qwid)-1;
+	int x,y,tmx,tmn;
+	for(int i=0;i<qnum;++i)
+	{
+		
+		cin>>x>>y;
+		x -= 1;
+		y -= 1;
+		tmx=mx[w][x][y];
+		tmn = mn[w][x][y];
+
+		if(mx[w][x+qwid-(1<<w)][y] > tmx)
+			tmx = mx[w][x+qwid-(1<<w)][y];
+		if(mn[w][x+qwid-(1<<w)][y] < tmn)
+			tmn = mn[w][x+qwid-(1<<w)][y];
+
+		if(mx[w][x][y+qwid-(1<<w)] > tmx)
+			tmx = mx[w][x][y+qwid-(1<<w)];
+		if(mn[w][x][y+qwid-(1<<w)] < tmn)
+			tmn = mn[w][x][y+qwid-(1<<w)];
+
+		if(mx[w][x+qwid-(1<<w)][y+qwid-(1<<w)] > tmx)
+			tmx = mx[w][x+qwid-(1<<w)][y+qwid-(1<<w)];
+		if(mn[w][x+qwid-(1<<w)][y+qwid-(1<<w)] < tmn)
+			tmn = mn[w][x+qwid-(1<<w)][y+qwid-(1<<w)];
+
+		cout<<tmx-tmn<<endl;
+	}
+	
 }
 
 #endif 
