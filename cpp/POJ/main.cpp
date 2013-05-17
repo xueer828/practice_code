@@ -2,6 +2,7 @@
 
 //here include different .h file to invoke problems
 
+#include "poj1193_memory_allocation.h"
 #include "poj2019_cornfield.h"
 #include "poj1068_parencodings.h"
 

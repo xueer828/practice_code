@@ -72,27 +72,27 @@ void solve()
 	int z=lg2(wid);
 	for(int k=1;k<=z;++k)
 	{
-		for(int i=0;i<wid;i += (1<<k))
+		for(int i=0;i<wid; ++i)
 		{
-			for(int j=0;j<wid;j+= (1<<k))
+			for(int j=0;j<wid; ++j)
 			{
 				//ÇómaxºÍmin
 				int tmx,tmn;
 				tmx=tmn=mx[k-1][i][j];
 
-				if(mx[k-1][i+(1<<(k-1))][j] > tmx)
+				if(i+(1<<(k-1)) < wid && mx[k-1][i+(1<<(k-1))][j] > tmx)
 					tmx = mx[k-1][i+(1<<(k-1))][j];
-				if(mn[k-1][i+(1<<(k-1))][j] < tmn)
+				if(i+(1<<(k-1)) < wid && mn[k-1][i+(1<<(k-1))][j] < tmn)
 					tmn = mn[k-1][i+(1<<(k-1))][j];
 
-				if(mx[k-1][i][j+(1<<(k-1))] > tmx)
+				if(j+(1<<(k-1)) < wid && mx[k-1][i][j+(1<<(k-1))] > tmx)
 					tmx = mx[k-1][i][j+(1<<(k-1))];
-				if(mn[k-1][i][j+(1<<(k-1))] < tmn)
+				if(j+(1<<(k-1)) < wid && mn[k-1][i][j+(1<<(k-1))] < tmn)
 					tmn = mn[k-1][i][j+(1<<(k-1))];
 
-				if(mx[k-1][i+(1<<(k-1))][j+(1<<(k-1))] > tmx)
+				if(i+(1<<(k-1)) < wid && j+(1<<(k-1)) < wid && mx[k-1][i+(1<<(k-1))][j+(1<<(k-1))] > tmx)
 					tmx = mx[k-1][i+(1<<(k-1))][j+(1<<(k-1))];
-				if(mn[k-1][i+(1<<(k-1))][j+(1<<(k-1))] < tmn)
+				if(i+(1<<(k-1)) < wid && j+(1<<(k-1)) < wid && mn[k-1][i+(1<<(k-1))][j+(1<<(k-1))] < tmn)
 					tmn = mn[k-1][i+(1<<(k-1))][j+(1<<(k-1))];
 
 
@@ -114,24 +114,79 @@ void solve()
 		tmx=mx[w][x][y];
 		tmn = mn[w][x][y];
 
-		if(mx[w][x+qwid-(1<<w)][y] > tmx)
+		if(x+qwid-(1<<w) <wid && mx[w][x+qwid-(1<<w)][y] > tmx)
 			tmx = mx[w][x+qwid-(1<<w)][y];
-		if(mn[w][x+qwid-(1<<w)][y] < tmn)
+		if(x+qwid-(1<<w) <wid && mn[w][x+qwid-(1<<w)][y] < tmn)
 			tmn = mn[w][x+qwid-(1<<w)][y];
 
-		if(mx[w][x][y+qwid-(1<<w)] > tmx)
+		if(y+qwid-(1<<w) < wid && mx[w][x][y+qwid-(1<<w)] > tmx)
 			tmx = mx[w][x][y+qwid-(1<<w)];
-		if(mn[w][x][y+qwid-(1<<w)] < tmn)
+		if(y+qwid-(1<<w) < wid && mn[w][x][y+qwid-(1<<w)] < tmn)
 			tmn = mn[w][x][y+qwid-(1<<w)];
 
-		if(mx[w][x+qwid-(1<<w)][y+qwid-(1<<w)] > tmx)
+		if(x+qwid-(1<<w) <wid && y+qwid-(1<<w) < wid && mx[w][x+qwid-(1<<w)][y+qwid-(1<<w)] > tmx)
 			tmx = mx[w][x+qwid-(1<<w)][y+qwid-(1<<w)];
-		if(mn[w][x+qwid-(1<<w)][y+qwid-(1<<w)] < tmn)
+		if(x+qwid-(1<<w) <wid && y+qwid-(1<<w) < wid && mn[w][x+qwid-(1<<w)][y+qwid-(1<<w)] < tmn)
 			tmn = mn[w][x+qwid-(1<<w)][y+qwid-(1<<w)];
 
 		cout<<tmx-tmn<<endl;
 	}
 	
 }
+
+/*
+
+#include"iostream"
+using namespace std;
+int n,b,k,x,y,a[300][300],off;
+int maxt[300][300][3],mint[300][300][8],n2[10]={1,2,4,8,16,32,64,128,256,512};
+void ST(void)
+{ 
+	int x,i,j;
+	for(x=0;x<n;x++) 
+	{ 
+		for(i=0;i<n;i++) 
+			maxt[x][i][0]=mint[x][i][0]=a[x][i];
+		for(i=1;i<=off;i++) 
+			for(j=0;j+n2[i]-1<n;j++) 
+			{ 
+				maxt[x][j][i]=max(maxt[x][j][i-1],maxt[x][j+n2[i-1]][i-1]); 
+				mint[x][j][i]=min(mint[x][j][i-1],mint[x][j+n2[i-1]][i-1]); 
+			} 
+	}
+}
+
+void Get(int x,int y)
+{ 
+	int i,j,xt=-999999999,nt=999999999;
+	for(i=0;i<b;i++)
+	{ 
+		xt=max(xt,max(maxt[x+i][y][off],maxt[x+i][y+b-n2[off]][off]));
+		nt=min(nt,min(mint[x+i][y][off],mint[x+i][y+b-n2[off]][off])); 
+	} 
+	printf("%d\n",xt-nt);} 
+
+
+int main()
+{ 
+	int i,j; 
+	scanf("%d%d%d",&n,&b,&k);
+	for(off=1;n2[off]<=b;off++);
+	off--; 
+	for(i=0;i<n;i++) 
+		for(j=0;j<n;j++) 
+			scanf("%d",&a[i][j]); 
+	ST(); 
+	for(i=0;i<k;i++) 
+	{ 
+		scanf("%d%d",&x,&y);
+		x--; y--; 
+		Get(x,y);
+	} 
+	system("pause"); 
+	return 0; 
+}
+
+*/
 
 #endif 
