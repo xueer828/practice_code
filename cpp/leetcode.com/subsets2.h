@@ -26,6 +26,13 @@ If S = [1,2,2], a solution is:
 ]
 */
 
+/*
+什么原理?
+Run Status: Accepted!
+Program Runtime: 52 milli secs
+Progress: 19/19 test cases passed.
+*/
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -41,11 +48,37 @@ If S = [1,2,2], a solution is:
 using namespace std;
 
 class Solution {
+	void gen_subsets(vector<vector<int> >& v, vector<int>& s, vector<int>& t, int n)
+	{
+		//为什么?
+		v.push_back(t);
+		
+
+		for(int i=n;i<s.size();++i)
+		{
+			if(i>n && s[i]==s[i-1]) //这个元素已经考虑过了,可以pass
+				continue;
+
+			t.push_back(s[i]);
+			gen_subsets(v,s,t,i+1);
+			t.pop_back();
+		}
+
+	}
 public:
 	vector<vector<int> > subsetsWithDup(vector<int> &S) {
 		// Start typing your C/C++ solution below
 		// DO NOT write int main() function
+		int sz=S.size();
+		vector<vector<int> > v;
+		if(sz <= 0)
+			return v;
 
+		sort(S.begin(),S.end());
+		vector<int> t;
+		gen_subsets(v,S,t,0);
+
+		return v;
 	}
 };
 

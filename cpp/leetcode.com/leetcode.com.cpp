@@ -1,6 +1,27 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
+#include "subsets2.h"
+#include "subsets.h"
+
+#include "string_to_integer.h"
+
+#include "spiral_matrix2.h"
+#include "spiral_matrix.h"
+
+#include "sort_colors.h"
+#include "simplify_path.h" // not yet
+
+#include "search_matrix_zeroes.h"
+#include "search_insert_postition.h"
+
+#include "search_in_rotated_sorted_array2.h"
+#include "search_in_rotated_sorted_array.h"
+#include "search_for_a_range.h"
+
+#include "search_a_2d_matrix.h"
+#include "same_tree.h"
+
 #include "rotate_list.h"
 #include "roman_to_integer.h"
 

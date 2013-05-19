@@ -88,6 +88,7 @@
     <ClInclude Include="poj1011_sticks.h" />
     <ClInclude Include="poj1018.h" />
     <ClInclude Include="poj1035_spell_checker.h" />
+    <ClInclude Include="poj1050_to_the_max.h" />
     <ClInclude Include="poj1061.h" />
     <ClInclude Include="poj1067_n.h" />
     <ClInclude Include="poj1068_parencodings.h" />
