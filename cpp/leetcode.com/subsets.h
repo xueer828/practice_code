@@ -51,7 +51,7 @@ Progress: 10/10 test cases passed.
 using namespace std;
 
 class Solution {
-	void gen_subsets(vector<vector<int> >& v, vector<int>& s, vector<int>& t, int n)
+	void gen_subsets_recusive(vector<vector<int> >& v, vector<int>& s, vector<int>& t, int n)
 	{
 		if(n >= s.size())
 		{
@@ -61,12 +61,14 @@ class Solution {
 
 		//选择第n个元素
 		t.push_back(s[n]);
-		gen_subsets(v,s,t,n+1);
+		gen_subsets_recusive(v,s,t,n+1);
 		//不选第n个元素
 		t.pop_back();
-		gen_subsets(v,s,t,n+1);
+		gen_subsets_recusive(v,s,t,n+1);
 
 	}
+
+
 public:
 	vector<vector<int> > subsets(vector<int> &S) {
 		// Start typing your C/C++ solution below
@@ -78,7 +80,7 @@ public:
 
 		vector<int> t;
 		sort(S.begin(),S.end());
-		gen_subsets(v,S,t,0);
+		//gen_subsets_recusive(v,S,t,0);
 
 		return v;
 	}

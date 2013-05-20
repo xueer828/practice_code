@@ -37,17 +37,54 @@ using namespace std;
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+
+/*
+指针处理基本功
+Run Status: Accepted!
+Program Runtime: 20 milli secs
+Progress: 55/55 test cases passed.
+*/
+
+struct ListNode{
+	int val;
+	ListNode *next;
+	ListNode(int x=0):val(x),next(NULL){}
+};
 class Solution {
 public:
     ListNode *swapPairs(ListNode *head) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
-        
+        if(!head) return head;
+
+		ListNode *pre(NULL),*p1(NULL),*p2(NULL),*post(NULL);
+		p1=head; p2 = p1->next;
+		while(p1 && p2)
+		{
+			post = p2->next;
+			p2->next = p1;
+			p1->next = post;
+			if(pre){
+				pre->next = p2; // 跟前面串联起来
+				pre = p1;	
+			}else{
+				pre = p1; //此时处理第一个pair
+				head = p2;
+			}
+			p1 = post;
+			if(p1)
+				p2 = p1->next;
+			else
+				p2 = NULL;			
+		}
+
+		return head;
     }
 };
 
 void solve()
 {
+	ListNode A[5];
 
 }
 

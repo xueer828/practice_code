@@ -50,12 +50,35 @@ using namespace std;
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
+struct TreeNode 
+{
+	int val;
+	TreeNode *left, *right;
+	TreeNode(int x=0):val(x),left(NULL),right(NULL){}
+};
 class Solution {
+
+	bool isSymmetric_recursive(TreeNode* root)
+	{
+		if(!root || (!root->left && !root->right)) return true;
+
+		if(root->left && root->right)
+		{
+			return (root->left->val == root->right->val &&
+				isSymmetric_recursive(root->left) &&
+				isSymmetric_recursive(root->right));
+		}
+
+		return false;
+	}
 public:
     bool isSymmetric(TreeNode *root) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
-        
+        if(!root) return true;
+
+		return isSymmetric_recursive(root);
     }
 };
 
