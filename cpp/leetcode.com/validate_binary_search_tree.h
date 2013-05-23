@@ -17,6 +17,10 @@ Both the left and right subtrees must also be binary search trees.
 confused what "{1,#,2,3}" means? > read more on how binary tree is serialized on OJ.
 */
 
+/*
+判断一颗二叉树是否是二叉搜索树: 即判断当前节点大于前驱节点 (中序遍历)
+*/
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -40,12 +44,34 @@ using namespace std;
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+
+struct TreeNode
+{
+	int val;
+	TreeNode *left,*right;
+	TreeNode(int x):val(x),left(NULL),right(NULL){}
+};
 class Solution {
+	bool is_valid_BST_recusive(TreeNode *root,TreeNode* pre, TreeNode* post)
+	{
+		TreeNode *ppre,*ppost;
+		if(root->left && !is_valid_BST_recusive(root->left,ppre,ppost))
+			return false;
+		
+		if(root->val < ppre->val)
+			return false;
+		if(root->right && !is_valid_BST_recusive(root->right,ppre,ppost))
+			return false;
+
+		return true;
+	}
 public:
     bool isValidBST(TreeNode *root) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
-        
+        if(!root) return true;
+
+
     }
 };
 

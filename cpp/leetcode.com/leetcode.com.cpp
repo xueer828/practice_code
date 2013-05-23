@@ -1,6 +1,17 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
+#include "valid_palindrome.h"
+
+#include "unique_paths2.h"
+#include "unique_paths.h"
+
+#include "unique_binary_search_trees2.h"
+#include "unique_binary_search_trees.h"
+
+#include "two_sum.h"
+
+#include "symmetric_tree.h"
 #include "sum_root_to_leaf_numbers.h"
 
 #include "substring_with_concatenation_of_all_words.h" //not yet

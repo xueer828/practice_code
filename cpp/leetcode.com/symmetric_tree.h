@@ -27,6 +27,16 @@ Note:
 Bonus points if you could solve it both recursively and iteratively.
 */
 
+/*
+µ›πÈÀ„∑®:
+Run Status: Accepted!
+Program Runtime: 24 milli secs
+Progress: 190/190 test cases passed.
+
+∑«µ›πÈÀ„∑®:
+
+*/
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -59,18 +69,21 @@ struct TreeNode
 };
 class Solution {
 
-	bool isSymmetric_recursive(TreeNode* root)
+	bool isSymmetric_recursive(TreeNode* lroot,TreeNode* rroot)
 	{
-		if(!root || (!root->left && !root->right)) return true;
-
-		if(root->left && root->right)
+		if(!lroot && !rroot) 
+			return true;
+		else if(lroot && rroot)
 		{
-			return (root->left->val == root->right->val &&
-				isSymmetric_recursive(root->left) &&
-				isSymmetric_recursive(root->right));
+			if(lroot->val != rroot->val)
+				return false;
+			else if(!isSymmetric_recursive(lroot->left,rroot->right) ||
+				!isSymmetric_recursive(lroot->right,rroot->left))
+				return false;
+			return true;
+		}else{
+			return false;
 		}
-
-		return false;
 	}
 public:
     bool isSymmetric(TreeNode *root) {
@@ -78,7 +91,7 @@ public:
         // DO NOT write int main() function
         if(!root) return true;
 
-		return isSymmetric_recursive(root);
+		return isSymmetric_recursive(root->left,root->right);
     }
 };
 
