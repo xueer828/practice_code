@@ -1,6 +1,9 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
+#include "word_search.h"
+
+#include "wildcard_matching.h"
 #include "valid_palindrome.h"
 
 #include "unique_paths2.h"
