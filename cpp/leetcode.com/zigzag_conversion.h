@@ -19,6 +19,12 @@ string convert(string text, int nRows);
 convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR".
 */
 
+/*
+Run Status: Accepted!
+Program Runtime: 104 milli secs
+Progress: 1158/1158 test cases passed.
+*/
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -38,13 +44,37 @@ public:
 	string convert(string s, int nRows) {
 		// Start typing your C/C++ solution below
 		// DO NOT write int main() function    
+		int sz=s.length();
+		if(sz <= 0 || nRows <= 1)
+			return s;
 
+		vector<string> v(nRows,"");
+
+		int cnt=0;
+		for(;cnt < sz;)
+		{
+			int i=0;
+			for(i=0;i<=nRows-1 && cnt < sz;++i)
+				v[i] += s[cnt++];
+
+			int j=0;
+			for(j=nRows-2;j>0 && cnt < sz; --j)
+				v[j] += s[cnt++];
+
+		}
+
+		string r("");
+		for(int i=0;i<nRows;++i)
+			r += v[i];
+
+		return r;
 	}
 };
 
 void solve()
 {
-
+	Solution s;
+	cout<<s.convert("PAYPALISHIRING", 2)<<endl;
 }
 
 #endif

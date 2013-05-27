@@ -1,6 +1,10 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
+
+#include "triangle.h"
+
+#include "zigzag_conversion.h"
 #include "word_search.h"
 
 #include "wildcard_matching.h"
