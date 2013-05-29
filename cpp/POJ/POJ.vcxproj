@@ -93,6 +93,7 @@
     <ClInclude Include="poj1067_n.h" />
     <ClInclude Include="poj1068_parencodings.h" />
     <ClInclude Include="poj1088.h" />
+    <ClInclude Include="poj1192_optimize_connections.h" />
     <ClInclude Include="poj1193_memory_allocation.h" />
     <ClInclude Include="poj1308_is_it_a_tree.h" />
     <ClInclude Include="poj1731_permuation.h" />

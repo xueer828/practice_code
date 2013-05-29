@@ -2,6 +2,8 @@
 
 //here include different .h file to invoke problems
 
+#include "poj1192_optimize_connections.h"
+
 #include "poj1050_to_the_max.h"
 
 #include "poj1193_memory_allocation.h"

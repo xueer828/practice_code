@@ -1,6 +1,7 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
+#include "word_ladder2.h"
 #include "word_ladder.h"
 
 #include "triangle.h"
