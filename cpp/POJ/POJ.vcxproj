@@ -97,6 +97,8 @@
     <ClInclude Include="poj1193_memory_allocation.h" />
     <ClInclude Include="poj1308_is_it_a_tree.h" />
     <ClInclude Include="poj1731_permuation.h" />
+    <ClInclude Include="poj1887_testing_the_catcher.h" />
+    <ClInclude Include="poj1952_buy_lower.h" />
     <ClInclude Include="poj2019_cornfield.h" />
     <ClInclude Include="poj2499_binary_tree.h" />
     <ClInclude Include="poj2823.h" />

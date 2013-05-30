@@ -2,6 +2,10 @@
 
 //here include different .h file to invoke problems
 
+#include "poj1952_buy_lower.h"
+#include "poj1731_permuation.h" 
+
+#include "poj1887_testing_the_catcher.h"
 #include "poj1192_optimize_connections.h"
 
 #include "poj1050_to_the_max.h"
@@ -17,7 +21,7 @@
 
 #include "poj1011_sticks.h"
 
-#include "poj1731_permuation.h" //not AC
+
 #include "poj3264_sparse_table.h"
 
 #include "poj1009.h"

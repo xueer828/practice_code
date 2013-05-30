@@ -6,7 +6,7 @@
 // Author: xdutaotao (xdutaotao@gmail.com)
 // 
 
-//输入一字符串,求其所有的排列数
+//输入一字符串,求其所有的排列数,并且去除重复
 
 #include <cstdio>
 #include <iostream>
@@ -25,8 +25,8 @@ using namespace std;
 
 int sz=0;
 
-
-void permuation(string& v,int n)
+//方法1
+void permuation1(string& v,int n)
 {
 	if(n >= sz)
 	{
@@ -34,36 +34,73 @@ void permuation(string& v,int n)
 		return;
 	}
 
-	//set<char> s;
-	char tmp=v[n];
 	for(int i=n;i<sz;++i)
 	{
 		//去除重复
-		if(i!=n && v[i]==tmp)
+		if(n!=i && v[i]==v[n])
 			continue;
 
-		//s.insert(v[i]);
-
+		char tmp=v[n];
 		v[n]=v[i];
 		v[i]=tmp;
+			permuation1(v,n+1);
+		tmp = v[n];
+		v[n]=v[i];
+		v[i]=tmp;
+		
+	}
+}
 
-		permuation(v,n+1);
+//方法2
+void permuation2(string&o, string&v, vector<int>& b, int n)
+{
+	if(n >= sz)
+	{
+		cout<<v<<endl;
+		return;
+	}
 
-		//恢复
-		v[i]=v[n];
-		v[n]=tmp;
+	//对于第n个位置,从未选择的字符中选出字符来填充
+	for(int i=0;i<o.size();++i)
+	{
+		if(b[i])
+		{
+
+			--b[i];
+			v[n]=o[i];
+			permuation2(o,v,b,n+1);
+			++b[i];
+		}
 	}
 }
 
 void solve()
 {
 	string s;
-	while(cin>>s){
+	cin>>s;
+	
+	{
 
 		sort(s.begin(),s.end());
 		sz=s.length();
 
-		permuation(s,0);
+		vector<int> b(sz,1); //表示此数字有多少个
+
+		string t;
+		int len=0;
+		for(int i=0;i<sz;++i)
+		{
+			if(i==0 || s[i]!=s[i-1])
+			{
+				t += s[i];
+				++len;
+			}
+			else
+				++b[len-1];
+		}
+		
+		//permuation1(s,0);
+		permuation2(t,s,b,0);
 	}
 }
 
