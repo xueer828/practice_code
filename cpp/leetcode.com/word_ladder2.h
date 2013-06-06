@@ -35,9 +35,12 @@ All words contain only lowercase alphabetic characters.
 */
 
 /*
-DFS方案
+DFS方案,DFS方案依然过不了大数据
 */
 
+/*
+更折中的方案,先BFS求出最短的长度,然后再DFS得到满足最短的所有方案,这样才有可能过大数据方案
+*/
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -54,79 +57,57 @@ DFS方案
 using namespace std;
 
 class Solution {
-	void bfs(vector<vector<string> >& r, string& start, string& end, unordered_set<string>& dict)
+	int bfs(string& start, string& end, unordered_set<string>& dict)
 	{
-		int lv1=1,lv2=0;
 		queue<string> sq;
 		sq.push(start);
-
-		vector<string> vs;
-		int len=start.length();
-
+		int lv1(1),lv2(0),sz(start.length()),height(1);
 		while(!sq.empty())
 		{
-			string s=sq.front();
+			string t=sq.front();
 			sq.pop();
-			--lv1; //弹出一个,那么这一层就少一个节点
-			
-			for(int i=0;i<len;++i)
+			--lv1;
+
+			for(int i=0;i<sz;++i)
 			{
-				for(int j=0;i<26;++i)
+				string tmp(t);
+				for(char j='a';j<='z';++j)
 				{
-					string t(s);
-					t[i] = 'a' + j; //尝试'a'~'z',看是否在dict中
-
-					if(t == end)
+					tmp[i] = j;
+					if(tmp == end)
 					{
-						//可以相等了
-
-					}
-					if(dict.count(t))
+						return height;
+					}else if(dict.count(tmp) && t[i]!=j)
 					{
-						sq.push(t);
-						++lv2; //下一层节点数量更新
-
+						sq.push(tmp);
+						++lv2;
 					}
 				}
 			}
 
-			if(lv1 == 0) //层次到下一层了
+			if(lv1==0) //层次切换
 			{
-				lv1 = lv2;
-				lv2 = 0; 
+				lv1=lv2;
+				lv2 = 0;
+				++height;
 			}
 		}
-	}
 
-	bool exist(vector<string>& v, string& s)
-	{
-		for(int i=0;i<v.size();++i)
-		{
-			if(v[i]==s)
-				return true;
-		}
-		return false;
+		return -1; //不存在
 	}
 
 	void dfs(vector<vector<string> >& r, vector<string>& arr, 
 		string& start, string& end, 
-		unordered_set<string>& dict, int cLen,int& mn)
+		unordered_set<string>& dict, int cLen,int mn)
 	{
+
 		if(cLen > mn) //比最小还大,则剪枝
+		{
 			return;
+		}
 		if(start == end)
 		{
-			//满足
-			if(cLen < mn)
-			{
-				r.clear(); //前面的都不满足,因为最小的是当前cLen大小
-				mn = cLen;
-			}
-
-			//arr.push_back(end);
 			r.push_back(arr);
-			//arr.pop_back();
-
 			return;
 		}
 
@@ -134,11 +115,11 @@ class Solution {
 		for(int i=0;i<sz;++i) //对每一个字符进行替换
 		{
 			string t(start);
-			for(int j=0;j<26;++j)
+			for(int j='a';j<='z';++j)
 			{				
-				t[i] = 'a' + j;
+				t[i] = j;
 
-				if(t!=start && dict.count(t) && !exist(arr,t)) //字典里面有,则继续递归
+				if(dict.count(t) && start[i]!=j) //字典里面有,则继续递归
 				{
 					arr.push_back(t);
 					dfs(r,arr,t,end,dict,cLen+1,mn);
@@ -156,7 +137,7 @@ public:
 		if(dict.size()<=0) return res;
 
 		v.push_back(start);
-		int mn=0x7fffffff;
+		int mn=bfs(start,end,dict);
 		dfs(res,v,start,end,dict,0,mn);
 
 		return res;
@@ -167,11 +148,11 @@ void solve()
 {
 	Solution s;
 	unordered_set<string> dict;
-	dict.insert("a");
-	dict.insert("b");
-	dict.insert("c");
+	dict.insert("hot");
+	dict.insert("dog");
+	
 
-	s.findLadders("a","c",dict);
+	s.findLadders("hot","dog",dict);
 
 }
 

@@ -26,6 +26,7 @@ http://poj.org/problem?id=1952
 #include <queue>
 #include <deque>
 #include <cstdlib>
+#include <set>
 using namespace std;
 
 void solve()
@@ -36,7 +37,7 @@ void solve()
 	for(int i=0;i<n;++i)
 		cin>>v[i];
 
-	int tmx(1),mx(0);
+	int tmx(1),mx(0),tcount(0);
 	vector<int> dp(n,0);
 	vector<int> num(n,0);
 	dp[0]=1;
@@ -44,31 +45,35 @@ void solve()
 	for(int i=1;i<n;++i)
 	{
 		mx=0;
+		set<int> exist;
 		for(int j=0;j<i;++j)
 		{
-			if(v[j] > v[i] && mx < dp[j])
+			if(v[j] > v[i] && mx <= dp[j])
+			{
+				if(mx < dp[j])
+				{
+					exist.clear();
+					exist.insert(v[j]);
+					num[i] = num[j];
+				}else if(exist.count(v[j])<=0){
+					exist.insert(v[j]);
+					num[i] += num[j];
+				}
+	
 				mx = dp[j];
-		}
-
-		for(int j=0;j<i;++j)
-		{
-			if(v[j] > v[i] && mx == dp[j])
-				num[i] += num[j];
+			}				
 		}
 
 		dp[i] = mx + 1;
+
 		if(dp[i] > tmx)
+		{
 			tmx = dp[i];
+			tcount = i;
+		}
 	}
 
-	int count=0;
-	for(int i=0;i<n;++i)
-	{
-		if(tmx == dp[i])
-			count += num[i];
-	}
-
-	cout<<tmx<<" "<<count<<endl;
+	cout<<tmx<<" "<<num[tcount]<<endl;
 }
 
 #endif
