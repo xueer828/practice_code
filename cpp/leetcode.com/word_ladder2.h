@@ -39,7 +39,7 @@ DFS方案,DFS方案依然过不了大数据
 */
 
 /*
-更折中的方案,先BFS求出最短的长度,然后再DFS得到满足最短的所有方案,这样才有可能过大数据方案
+BFS求解方案,将每个词变化前的一个词都列出来,便于BFS完成之后回溯
 */
 #include <cstdio>
 #include <iostream>
@@ -57,6 +57,58 @@ DFS方案,DFS方案依然过不了大数据
 using namespace std;
 
 class Solution {
+	void ext_bfs(string& start, string& end, unordered_set<string>& dict, map<string, vector<string> >& pre)
+	{
+		queue<string> sq;
+		sq.push(start); //压入第一个字符串
+
+		int sz=start.length();
+		int lv1(1),lv2(0),height(1);
+
+		bool reached=false;
+
+		while(!sq.empty())
+		{
+			string t=sq.front();
+
+			sq.pop(); //弹出
+			--lv1; 
+
+			for(int i=0;i<sz;++i)
+			{
+				string tmp(t);
+				for(char c='a';c<='z';++c)
+				{
+					tmp[i] = c; //替换
+					if(tmp == end) //满足最小条件了
+					{
+						reached = true;
+						pre[tmp].push_back(t);
+					}else if(dict.count(tmp))
+					{
+						//存在,则把此t压入队列
+						sq.push(tmp);
+						++lv2; //下一层计数加1
+						
+						pre[tmp].push_back(t);
+					}
+				}
+			}
+
+			if(reached) //找到最短路径了
+			{
+				//开始回溯pre列表,
+			}
+
+			if(lv1 == 0) //上一层lvl完毕
+			{
+				lv1 = lv2;
+				lv2 = 0;
+				++height; //转战下一层
+			}
+		}
+	}
+
 	int bfs(string& start, string& end, unordered_set<string>& dict)
 	{
 		queue<string> sq;
