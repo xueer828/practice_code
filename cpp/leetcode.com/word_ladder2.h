@@ -54,10 +54,35 @@ BFS求解方案,将每个词变化前的一个词都列出来,便于BFS完成之后回溯
 #include <deque>
 #include <cstdlib>
 #include <unordered_set>
+#include <set>
 using namespace std;
 
 class Solution {
-	void ext_bfs(string& start, string& end, unordered_set<string>& dict, map<string, vector<string> >& pre)
+	void back_track(map<string, set<string> >& pre, 
+		set<string>& v, vector<vector<string> >& ret, 
+		string cur, string& last)
+	{
+		if(cur == last)
+		{
+			v.insert(cur);
+			vector<string> tmp;
+			for(set<string>::iterator it=v.begin();it!=v.end();++it)
+				tmp.push_back(*it);
+			ret.push_back(tmp);				
+			return;
+		}
+
+		set<string>& tmp=pre[cur];
+		v.insert(cur);
+		for(set<string>::iterator it=tmp.begin();it!=tmp.end();++it)
+		{
+			if(v.count(*it) <= 0)
+				back_track(pre,v,ret,*it,last);
+		}
+		v.erase(cur);
+
+	}
+	void ext_bfs(string& start, string& end, unordered_set<string>& dict, map<string, set<string> >& pre)
 	{
 		queue<string> sq;
 		sq.push(start); //压入第一个字符串
@@ -83,31 +108,31 @@ class Solution {
 					if(tmp == end) //满足最小条件了
 					{
 						reached = true;
-						pre[tmp].push_back(t);
-					}else if(dict.count(tmp))
+						if(pre[tmp].count(t) <=0)
+							pre[tmp].insert(t);
+					}else if(dict.count(tmp) && t[i]!=c)
 					{
 						//存在,则把此t压入队列
 						sq.push(tmp);
 						++lv2; //下一层计数加1
 						
-						pre[tmp].push_back(t);
+						if(pre[tmp].count(t)<=0)
+							pre[tmp].insert(t);
 					}
 				}
 			}
 
-			if(reached) //找到最短路径了
-			{
-				//开始回溯pre列表,
-			}
-
 			if(lv1 == 0) //上一层lvl完毕
 			{
+				if(reached) //最短路径的那一层搜寻完毕,则退出,下一步进行回溯
+					return;
 				lv1 = lv2;
 				lv2 = 0;
 				++height; //转战下一层
 			}
 		}
 	}
+
 
 	int bfs(string& start, string& end, unordered_set<string>& dict)
 	{
@@ -185,12 +210,19 @@ public:
 		// Start typing your C/C++ solution below
 		// DO NOT write int main() function
 		vector<vector<string> > res;
-		vector<string> v;
+		set<string> v;
 		if(dict.size()<=0) return res;
 
+		/*
 		v.push_back(start);
 		int mn=bfs(start,end,dict);
 		dfs(res,v,start,end,dict,0,mn);
+		*/
+		map<string,set<string> > sm;
+		//BFS 搜索
+		ext_bfs(start,end,dict,sm);
+
+		back_track(sm,v,res,end,start);
 
 		return res;
 	}
@@ -201,10 +233,13 @@ void solve()
 	Solution s;
 	unordered_set<string> dict;
 	dict.insert("hot");
+	dict.insert("dot");
 	dict.insert("dog");
+	dict.insert("lot");
+	dict.insert("log");
 	
 
-	s.findLadders("hot","dog",dict);
+	s.findLadders("hit","cog",dict);
 
 }
 
