@@ -1,7 +1,8 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
-#include "sudoku_solver.h"
+#include "substring_with_concatenation_of_all_words.h" //not yet
+#include "sudoku_solver.h" //not yet
 #include "valid_sudoku.h"
 
 #include "word_ladder2.h" //not yet
@@ -26,7 +27,7 @@
 #include "symmetric_tree.h"
 #include "sum_root_to_leaf_numbers.h"
 
-#include "substring_with_concatenation_of_all_words.h" //not yet
+
 
 #include "subsets2.h"
 #include "subsets.h"

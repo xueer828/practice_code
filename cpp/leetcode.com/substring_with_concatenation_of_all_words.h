@@ -41,7 +41,7 @@ Run Status: Time Limit Exceeded
 #include <cstdlib>
 using namespace std;
 
-class Solution {
+class Solution1 {
 public:
 	vector<int> findSubstring(string S, vector<string> &L) {
 		// Start typing your C/C++ solution below
@@ -109,13 +109,74 @@ public:
 	}
 };
 
+class Solution {
+	inline bool cmp(string& str1, int s1, string& str2, int s2, int n)
+	{
+		for(int i=0;i<n;++i)
+			if(str1[s1+i]!=str2[s2+i])
+				return false;
+
+		return true;
+	}
+public:
+	vector<int> findSubstring(string S, vector<string> &L) {
+		// Start typing your C/C++ solution below
+		// DO NOT write int main() function
+		vector<int> ret;
+		int sz=S.length();
+		int lsz=L.size();
+		if(sz<=0 || lsz <= 0)
+			return ret;
+
+		int str_sz=L[0].size();
+		if(str_sz <= 0)
+			return ret;
+
+		//暴力方式:列出所有可能的子串,因为子串的长度是固定的,所以可以认定有O(len(str1)-len(str2_array))个可能
+		//的子串,在罗列完毕之后直接进行比对
+
+		for(int i=0;i<=sz-str_sz*lsz;++i) //罗列可能的子串
+		{
+			vector<int> used(lsz,0);
+			int j=i;
+			for(;j<i+lsz*str_sz;j+=str_sz)
+			{
+				int k=0;
+				for(;k<lsz;++k)
+				{
+					if(used[k]==0 && cmp(S,j,L[k],0,str_sz))
+					{
+						used[k] = 1;
+						break;
+					}
+				}
+
+				if(k == lsz) //no same
+					break;
+			}
+			
+			int m=0;
+			for(m=0;m<lsz;++m)
+			{
+				if(used[m]==0)
+					break;
+			}
+
+			if(m==lsz)
+				ret.push_back(i);
+		}
+
+		return ret;
+	}
+};
+
 void solve()
 {
 	Solution s;
-	vector<string> t(2);
-	t[0]="foo";
-	t[1]="bar";
-	s.findSubstring("barfoothefoobarman",t);
+	vector<string> t(1);
+	t[0]="a";
+	//t[1]="bar";
+	s.findSubstring("a",t);
 }
 
 #endif
