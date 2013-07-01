@@ -110,59 +110,45 @@ public:
 };
 
 class Solution {
-	inline bool cmp(string& str1, int s1, string& str2, int s2, int n)
-	{
-		for(int i=0;i<n;++i)
-			if(str1[s1+i]!=str2[s2+i])
-				return false;
-
-		return true;
-	}
 public:
 	vector<int> findSubstring(string S, vector<string> &L) {
 		// Start typing your C/C++ solution below
 		// DO NOT write int main() function
 		vector<int> ret;
 		int sz=S.length();
-		int lsz=L.size();
-		if(sz<=0 || lsz <= 0)
+		int l_sz=L.size();
+		if(sz<=0 || l_sz <= 0)
 			return ret;
 
 		int str_sz=L[0].size();
 		if(str_sz <= 0)
 			return ret;
 
+		//对字符串数组进行预处理
+		map<string,int> mp,tmp_mp;
+		for(int i=0;i<l_sz;++i)
+			if(mp.count(L[i]) <= 0)
+				mp[L[i]]=1;
+			else
+				++mp[L[i]];
+
 		//暴力方式:列出所有可能的子串,因为子串的长度是固定的,所以可以认定有O(len(str1)-len(str2_array))个可能
 		//的子串,在罗列完毕之后直接进行比对
 
-		for(int i=0;i<=sz-str_sz*lsz;++i) //罗列可能的子串
+		for(int i=0;i<=sz-str_sz*l_sz;++i) //罗列可能的子串
 		{
-			vector<int> used(lsz,0);
-			int j=i;
-			for(;j<i+lsz*str_sz;j+=str_sz)
+			tmp_mp = mp;
+			int j=0;
+			for(j=0;j<l_sz;++j)
 			{
-				int k=0;
-				for(;k<lsz;++k)
-				{
-					if(used[k]==0 && cmp(S,j,L[k],0,str_sz))
-					{
-						used[k] = 1;
-						break;
-					}
-				}
+				string s=S.substr(i+j*str_sz,str_sz);
+				if(tmp_mp.count(s) == 0 || tmp_mp[s] <= 0)
+					break;
 
-				if(k == lsz) //no same
-					break;
-			}
-			
-			int m=0;
-			for(m=0;m<lsz;++m)
-			{
-				if(used[m]==0)
-					break;
+				--tmp_mp[s];
 			}
 
-			if(m==lsz)
+			if(j==l_sz)
 				ret.push_back(i);
 		}
 
