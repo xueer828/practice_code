@@ -1,6 +1,8 @@
 // leetcode.com.cpp : 定义控制台应用程序的入口点。
 //
 
+#include "median_of_two_sorted_arrays.h"
+
 #include "substring_with_concatenation_of_all_words.h" //not yet
 #include "sudoku_solver.h" //not yet
 #include "valid_sudoku.h"
