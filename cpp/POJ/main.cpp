@@ -2,6 +2,8 @@
 
 //here include different .h file to invoke problems
 
+#include "poj1657_king_queen.h"
+
 #include "poj1163_the_triangle.h"
 
 #include "poj1952_buy_lower.h"

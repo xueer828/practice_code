@@ -97,6 +97,7 @@
     <ClInclude Include="poj1192_optimize_connections.h" />
     <ClInclude Include="poj1193_memory_allocation.h" />
     <ClInclude Include="poj1308_is_it_a_tree.h" />
+    <ClInclude Include="poj1657_king_queen.h" />
     <ClInclude Include="poj1731_permuation.h" />
     <ClInclude Include="poj1887_testing_the_catcher.h" />
     <ClInclude Include="poj1952_buy_lower.h" />
