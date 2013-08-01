@@ -23,6 +23,12 @@ For k = 2, you should return: 2->1->4->3->5
 For k = 3, you should return: 3->2->1->4->5
 */
 
+/*
+Run Status: Accepted!
+Program Runtime: 140 milli secs
+Progress: 81/81 test cases passed.
+ */
+
 #include <cstdio>
 #include <iostream>
 #include <fstream>
@@ -54,53 +60,74 @@ struct ListNode{
 };
 
 class Solution {
+	ListNode *reverse_iterative(ListNode *start, ListNode *end)
+	{
+		ListNode *pre(end),*cur(start),*post;
+		while(cur!=end)
+		{
+			post = cur->next;
+			cur->next = pre;
+			pre=cur;
+			cur=post;
+		}
+
+		ListNode* n=pre;
+
+		return pre;
+	}
+
+	ListNode* reverse_recursive(ListNode *start, ListNode *end, ListNode*& head)
+	{
+		if(start == end || start->next == end)
+		{
+			head = start;
+			return head;
+		}
+
+		ListNode* n=reverse_recursive(start->next,end,head);
+		n->next = start;
+
+		return start;
+	}
 public:
     ListNode *reverseKGroup(ListNode *head, int k) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
         if(!head || k<=1) return head;
 
-		ListNode *beg(head),*end(head),*last(NULL);
-		ListNode *pre=NULL,*cur,*post;
-		for(;;)
+		ListNode *s(head),*e(head),*new_head(NULL),*last(NULL);
+		while(e)
 		{
-			int cnt=k;
-			while(end->next && --cnt)
+			int ct=k;
+			while(ct && e)
 			{
-				end = end->next;
+				e = e->next;
+				--ct;
 			}
 
-			//beg和end为逆转区间 [beg,end]
-			if(cnt > 1) //如果不够k,则跳出loop,不再逆转
-				break;
-
-			//逆转[beg,end]区间			
-			cur = beg; //cur为要逆转的一个节点
-			pre=end->next; //pre为下一组的起始节点
-			ListNode* next=end->next;
-			while(cur!=next)
+			if(ct == 0)
 			{
-				post=cur->next;
-				cur->next = pre;
-				pre=cur;
-				cur=post;
-			}
+				ListNode *h;
+				//方法1:调用非递归的逆转链表
+				//h=reverse_iterative(s,e);
 
-			if(beg==head) //如果beg是头结点,
-				head = pre; //那么置头结点为第一组k的逆转后头节点pre
-			else //如果不是,那么把前面已经逆转完毕的节点加上逆转后的节点pre
-				end->next = pre;
+				//方法2:调用递归的逆转链表
+				reverse_recursive(s,e,h);
 
-
-			//更新新的beg和end节点
-			beg = next;
-			end = beg;
-
-			if(!beg)
+				if(!new_head)
+					new_head = h;
+				else
+					last->next = h;
+				last = s;
+				s = e;
+			}else{
+				if(!new_head)
+					new_head = s;
 				break;
+			}
 		}
 
-		return head;
+		return new_head;
     }
 };
 
@@ -113,7 +140,7 @@ void solve()
 	l[2].val = 3;
 	l[3].val = 4;
 	l[0].next = &l[1];
-	l[1].next = &l[2];
+	l[1].next = NULL;//&l[2];
 	l[2].next = &l[3];
 
 

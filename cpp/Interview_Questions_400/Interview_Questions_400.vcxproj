@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{28B36658-4FD5-491A-8AE2-9F50C50953E9}</ProjectGuid>
+    <ProjectGuid>{4EFA8EDA-B8C7-48EC-8D97-2B5D2067B0E9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>heropongocn</RootNamespace>
+    <RootNamespace>Interview_Questions_400</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -74,22 +74,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="ReadMe.txt" />
+    <ClCompile Include="Interview_Questions_400.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="1022_min_k_numbers.h" />
-    <ClInclude Include="1023_depth_of_binary_tree.h" />
-    <ClInclude Include="47_24point.h" />
-    <ClInclude Include="56_Rectangle.h" />
-    <ClInclude Include="59_coin.h" />
-    <ClInclude Include="69_pefect_words.h" />
-    <ClInclude Include="72_valid_string.h" />
-    <ClInclude Include="stdafx.h" />
-    <ClInclude Include="targetver.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="hero.pongo.cn.cpp" />
-    <ClCompile Include="stdafx.cpp" />
+    <ClInclude Include="1_min_abs_of_array.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
