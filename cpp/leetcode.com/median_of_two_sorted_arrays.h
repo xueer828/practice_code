@@ -51,7 +51,7 @@ public:
 		// DO NOT write int main() function
 		if(!A ||!B || m+n <= 0) return 0;
 
-		int a1(0),b1=(0);
+		int a1(0),b1(0);
 
 		int mid(0),lessmid(0);
 
@@ -122,7 +122,7 @@ public:
 			if((n&0x01)==1)
 				return B[n/2];
 			else
-				return (B[n/2-1] + B[n/2])/2;
+				return (B[n/2-1] + B[n/2])/2.0;
 		}
 
 		if(n==0)
@@ -130,7 +130,7 @@ public:
 			if((m&0x01)==1)
 				return A[m/2];
 			else
-				return (A[m/2-1]+A[m/2])/2;
+				return (A[m/2-1]+A[m/2])/2.0;
 		}
 
 		int midA=A[m/2],midB=B[n/2];

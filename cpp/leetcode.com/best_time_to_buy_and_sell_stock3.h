@@ -21,7 +21,14 @@ Solution 1 超时 TLE, small test 全通过
 
 //思路同best_time_to_buy_and_sell_stock2, 求出每个一直单调上升通道能得到的最大值,然后取和的前2名
 
+//思路2, 因为最多能够买2次,也就是说能买一次或者两次,并且两次持有股票的时间不重叠,那么一个直接的思路就是
+//分成两段,分别求各段的买一次所能获得的最大值,然后求两段(或最头起最尾起的一段)的和的最大值,即为所求
 
+/*
+Run Status: Accepted!
+Program Runtime: 64 milli secs
+Progress: 198/198 test cases passed.
+ */
 
 #include <cstdio>
 #include <iostream>
@@ -77,46 +84,45 @@ public:
 	int maxProfit(vector<int> &prices) {
 		// Start typing your C/C++ solution below
 		// DO NOT write int main() function
-
-		int len=prices.size();
-
-		if(len <= 1)
+		
+		int sz=prices.size();
+		if(sz <= 0)
 			return 0;
 
-		vector<int> sections; //saving every single ascend queue section
-		int sec_min=prices[0],sec_max=prices[0];
+		vector<int> psum(sz,0);
+		
+		int tmn(prices[0]);
+		psum[0]=0;
 
-		for(int i=1;i<len;++i)
+		for(int i=1;i<sz;++i)
 		{
-			if(sec_max < prices[i]) //ascend
-			{
-				sec_max = prices[i];
-				if(i==len-1) //last one
-				{
-					int tmp=sec_max - sec_min;
-					if(tmp > 0)
-						sections.push_back(tmp);
-				}
-			}else{ //non-ascend
-				int tmp=sec_max - sec_min;
-				if(tmp > 0)
-					sections.push_back(tmp);
-				sec_max = sec_min = prices[i];
-			}
+			//更新当前能获得的最大值=max{prices[i-1],a[i]-tmn}
+			if(prices[i] - tmn > psum[i-1])
+				psum[i]=prices[i]-tmn;
+			else
+				psum[i]=psum[i-1];
+
+			//更新min值
+			if(tmn > prices[i])
+				tmn = prices[i];
 		}
 
-		len = sections.size();
-		if( len <= 0)
-			return 0;
-
-		sort(sections.begin(),sections.end());
-
-		if(len >=2)
+		int mx=psum[sz-1];
+		int tmx = prices[sz-1],pmx=0;
+		//另一半从后往前
+		for(int i=sz-1;i>=0;--i)
 		{
-			return sections[len-1]+sections[len-2];
-		}else{
-			return sections[len-1];
+			if(tmx - prices[i] > pmx)
+				pmx = tmx - prices[i];
+			
+			if(mx < pmx + psum[i])
+				mx = pmx + psum[i];
+
+			if(prices[i] > tmx)
+				tmx = prices[i];
 		}
+
+		return mx;
 	}
 };
 
@@ -124,12 +130,12 @@ public:
 void solve()
 {
 	Solution s;
-	vector<int> a(5);
-	a[0]=2;
-	a[1]=1;
-	a[2]=2;
-	a[3]=0;
-	a[4]=1;
+	vector<int> a(3);
+	a[0]=1;
+	a[1]=4;
+	a[2]=3;
+	//a[3]=0;
+	//a[4]=1;
 
 	cout<<s.maxProfit(a)<<endl;
 }
